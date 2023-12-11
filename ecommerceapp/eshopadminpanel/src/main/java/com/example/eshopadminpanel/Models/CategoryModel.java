@@ -12,7 +12,7 @@ public class CategoryModel {
         this.category_id = category_id;
     }
 
-    public CategoryModel(){
+    public CategoryModel() {
 
     }
 

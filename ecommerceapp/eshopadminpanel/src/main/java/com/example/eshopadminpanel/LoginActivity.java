@@ -1,8 +1,5 @@
 package com.example.eshopadminpanel;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.eshopadminpanel.databinding.ActivityLoginBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     Dialog forgotPassDialog;
     AppCompatButton cancel_btn, reset_btn;
     EditText txtEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        if (auth.getCurrentUser()!=null) {
+        if (auth.getCurrentUser() != null) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -80,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     private void forgetEmail(String emailId) {
         auth.sendPasswordResetEmail(emailId).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {

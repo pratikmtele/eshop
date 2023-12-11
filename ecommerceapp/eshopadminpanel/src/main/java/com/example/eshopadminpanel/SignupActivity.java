@@ -1,11 +1,11 @@
 package com.example.eshopadminpanel;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eshopadminpanel.Models.AdminModel;
 import com.example.eshopadminpanel.databinding.ActivitySignupBinding;
@@ -14,9 +14,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
 
+    ActivitySignupBinding binding;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
-    ActivitySignupBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class SignupActivity extends AppCompatActivity {
             if (binding.signupName.getText().toString().equals("") ||
                     binding.signupEmail.getText().toString().equals("") ||
                     binding.signupPhone.getText().toString().equals("") ||
-                    binding.signupPassword.getText().toString().equals("")){
+                    binding.signupPassword.getText().toString().equals("")) {
 
                 Toast.makeText(SignupActivity.this, "Fill all required fields.", Toast.LENGTH_SHORT).show();
             } else {
@@ -51,6 +51,7 @@ public class SignupActivity extends AppCompatActivity {
             startActivity(loginIntent);
         });
     }
+
     public void createAccount() {
         auth.createUserWithEmailAndPassword(binding.signupEmail.getText().toString(), binding.signupPassword.getText()
                 .toString()).addOnCompleteListener(task -> {
@@ -61,7 +62,7 @@ public class SignupActivity extends AppCompatActivity {
                         binding.signupPhone.getText().toString(),
                         1);
 
-                database.getReference().child("Admin").child( task.getResult().getUser().getUid()).setValue(user);
+                database.getReference().child("Admin").child(task.getResult().getUser().getUid()).setValue(user);
                 binding.signupProgressBar.setVisibility(View.GONE);
                 binding.signUpBtn.setVisibility(View.VISIBLE);
                 Toast.makeText(SignupActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();

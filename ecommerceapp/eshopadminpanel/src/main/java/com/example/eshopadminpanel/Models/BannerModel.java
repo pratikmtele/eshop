@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BannerModel {
     String bannerId;
-    ArrayList<String>bannerUrls;
+    ArrayList<String> bannerUrls;
 
     public BannerModel(String bannerId, ArrayList<String> bannerUrls) {
         this.bannerId = bannerId;

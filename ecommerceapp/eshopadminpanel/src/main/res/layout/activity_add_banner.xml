@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddBannerActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".AddBannerActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,26 +24,26 @@
                 android:id="@+id/banner_back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:src="@drawable/baseline_arrow_back"
+                app:layout_constraintBottom_toBottomOf="@id/textview"
+                app:layout_constraintEnd_toStartOf="@id/textview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/textview"
-                app:layout_constraintEnd_toStartOf="@id/textview"
-                app:layout_constraintBottom_toBottomOf="@id/textview"
-                android:layout_marginStart="15dp"
-                tools:ignore="ContentDescription"
-                app:tint="@color/green" />
+                app:tint="@color/green"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
-                android:layout_marginEnd="30dp"
                 android:text="@string/add_banner"
                 android:textColor="@color/green"
                 android:textSize="18sp"
-                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/banner_back_btn"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,17 +54,17 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/notification_bg"
+                android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textview"
-                android:orientation="horizontal"
-                android:gravity="center">
+                app:layout_constraintTop_toBottomOf="@+id/textview">
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/add_photo"/>
+                    android:src="@drawable/add_photo" />
 
             </LinearLayout>
 
@@ -73,9 +73,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:scrollbars="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:scrollbars="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/addBanner"
                 tools:listitem="@layout/sample_add_banner_design" />
 
@@ -87,14 +87,14 @@
         android:id="@+id/banner_upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/buy_now_btn"
+        android:fontFamily="@font/poppins_semibold"
         android:text="Upload"
         android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/buy_now_btn"
-        android:textColor="@color/white"
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="16sp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

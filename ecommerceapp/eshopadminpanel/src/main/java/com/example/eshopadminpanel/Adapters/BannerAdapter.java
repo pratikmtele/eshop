@@ -14,7 +14,7 @@ import com.example.eshopadminpanel.R;
 
 import java.util.ArrayList;
 
-public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder>{
+public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder> {
     ArrayList<Uri> list;
     Context context;
 
@@ -42,6 +42,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
 
     public class viewHolder extends RecyclerView.ViewHolder {
         ImageView banner;
+
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             banner = itemView.findViewById(R.id.banner);

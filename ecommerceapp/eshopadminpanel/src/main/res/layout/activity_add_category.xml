@@ -9,8 +9,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,26 +21,26 @@
                 android:id="@+id/category_back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:src="@drawable/baseline_arrow_back"
+                app:layout_constraintBottom_toBottomOf="@id/textview"
+                app:layout_constraintEnd_toStartOf="@id/textview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/textview"
-                app:layout_constraintEnd_toStartOf="@id/textview"
-                app:layout_constraintBottom_toBottomOf="@id/textview"
-                android:layout_marginStart="15dp"
-                tools:ignore="ContentDescription"
-                app:tint="@color/green" />
+                app:tint="@color/green"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
-                android:layout_marginEnd="30dp"
                 android:text="Add Category"
                 android:textColor="@color/green"
                 android:textSize="18sp"
-                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/category_back_btn"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -49,28 +49,28 @@
                 android:id="@+id/edt_category"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="Enter Category"
-                app:layout_constraintTop_toBottomOf="@+id/textview"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"/>
+                android:hint="Enter Category"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/add_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/buy_now_btn"
-                android:text="Add Category"
-                android:textColor="@color/white"
-                android:fontFamily="@font/poppins_semibold"
-                app:layout_constraintTop_toBottomOf="@id/edt_category"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"/>
+                android:background="@drawable/buy_now_btn"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Add Category"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_category" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

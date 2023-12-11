@@ -1,18 +1,13 @@
 package com.example.eshopadminpanel;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.eshopadminpanel.databinding.ActivityAddCategoryBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,6 +16,7 @@ public class AddCategoryActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +37,10 @@ public class AddCategoryActivity extends AppCompatActivity {
 
         binding.addCategory.setOnClickListener(v -> {
             String category = binding.edtCategory.getText().toString();
-            if (!category.equals("")){
+            if (!category.equals("")) {
                 progressDialog.show();
                 uploadCategory(category);
-            }else {
+            } else {
                 Toast.makeText(getApplicationContext(), "Please enter category", Toast.LENGTH_SHORT).show();
             }
         });

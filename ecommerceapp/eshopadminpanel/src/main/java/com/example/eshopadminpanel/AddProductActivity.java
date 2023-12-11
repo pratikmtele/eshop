@@ -1,12 +1,5 @@
 package com.example.eshopadminpanel;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -14,11 +7,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.eshopadminpanel.Adapters.ProductImagesAdapter;
 import com.example.eshopadminpanel.Models.CategoryModel;
@@ -38,6 +35,7 @@ import java.util.ArrayList;
 
 public class AddProductActivity extends AppCompatActivity {
 
+    private final static int Read_Permission = 101;
     ActivityAddProductBinding binding;
     DatabaseReference reference;
     StorageReference storageReference;
@@ -46,9 +44,8 @@ public class AddProductActivity extends AppCompatActivity {
     ArrayList<CategoryModel> list;
     ProductImagesAdapter productImagesAdapter;
     CategoryModel categoryModel;
-    String category_id , product_name, price;
+    String category_id, product_name, price;
     ProgressDialog progressDialog;
-    private final static int Read_Permission = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +75,8 @@ public class AddProductActivity extends AppCompatActivity {
 
         // Permission Check
         if (ContextCompat.checkSelfPermission(AddProductActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(AddProductActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, Read_Permission);
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(AddProductActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Read_Permission);
         }
 
         binding.addProductImages.setOnClickListener(v -> {
@@ -96,18 +93,18 @@ public class AddProductActivity extends AppCompatActivity {
         binding.productImageRecyclerview.setAdapter(productImagesAdapter);
 
         binding.autoCompleteText.setOnItemClickListener((parent, view, position, id) -> {
-            category_id = list.get((int)id).getCategory_id();
+            category_id = list.get((int) id).getCategory_id();
         });
 
         // insert product details in to the database
         binding.addProductBtn.setOnClickListener(v -> {
             product_name = binding.edtProductName.getText().toString();
             price = binding.edtPrice.getText().toString();
-            if (product_name == null || price == null || category_id == null ){
+            if (product_name == null || price == null || category_id == null) {
                 Toast.makeText(this, "Please fill required fields", Toast.LENGTH_SHORT).show();
             } else {
                 progressDialog.show();
-                if (product_images.size() >0){
+                if (product_images.size() > 0) {
                     uploadImages();
                 }
             }
@@ -115,15 +112,15 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void uploadImages() {
-        for (int i=0; i<product_images.size(); i++){
+        for (int i = 0; i < product_images.size(); i++) {
             Uri individualImages = product_images.get(i);
-            if (individualImages != null){
+            if (individualImages != null) {
                 StorageReference imageFolder = FirebaseStorage.getInstance().getReference().child("Images");
                 String key = reference.child("Products").push().getKey();
-                StorageReference imageName = imageFolder.child(key).child("image"+i);
+                StorageReference imageName = imageFolder.child(key).child("image" + i);
                 imageName.putFile(individualImages).addOnSuccessListener(taskSnapshot -> imageName.getDownloadUrl().addOnSuccessListener(uri -> {
                     product_images_urls.add(String.valueOf(uri));
-                    if (product_images_urls.size() == product_images.size()){
+                    if (product_images_urls.size() == product_images.size()) {
                         storeLinks(product_images_urls, key);
                     }
                 })).addOnFailureListener(new OnFailureListener() {
@@ -163,7 +160,7 @@ public class AddProductActivity extends AppCompatActivity {
         reference.child("Categories").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String category_id = snapshot.getKey();
                     String category_name = snapshot.getValue().toString();
                     categoryModel = new CategoryModel(category_name, category_id);
@@ -184,13 +181,13 @@ public class AddProductActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK){
-            if (data.getClipData() != null){
-                for (int i=0; i<3; i++){
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            if (data.getClipData() != null) {
+                for (int i = 0; i < 3; i++) {
                     product_images.add(data.getClipData().getItemAt(i).getUri());
                 }
                 productImagesAdapter.notifyDataSetChanged();
-            }else {
+            } else {
                 Uri imageUrl = data.getData();
                 product_images.add(imageUrl);
             }
