@@ -6,16 +6,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,12 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.practice.e_commerce_app.Adapters.CategoryAdapter;
-import com.practice.e_commerce_app.Adapters.PopularProductAdapter;
-import com.practice.e_commerce_app.Adapters.TrendingProductAdapter;
-import com.practice.e_commerce_app.Models.BannerModel;
+import com.practice.e_commerce_app.Adapters.ProductAdapter;
 import com.practice.e_commerce_app.Models.CategoryModel;
 import com.practice.e_commerce_app.Models.PopularProductModel;
-import com.practice.e_commerce_app.Models.TrendingProductModel;
 import com.practice.e_commerce_app.NotificationActivity;
 import com.practice.e_commerce_app.R;
 
@@ -42,7 +37,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     ImageSlider imageSlider;
     ImageView notifications;
-    RecyclerView category_recyclerview, popular_product_recyclerview, trending_product_recyclerview;
+    RecyclerView category_recyclerview, product_recyclerview;
     FirebaseDatabase database;
     DatabaseReference reference;
 
@@ -71,8 +66,7 @@ public class HomeFragment extends Fragment {
 
         imageSlider = view.findViewById(R.id.product_image_slider);
         category_recyclerview = view.findViewById(R.id.category_recyclerview);
-        popular_product_recyclerview = view.findViewById(R.id.popular_products_recyclerview);
-        trending_product_recyclerview = view.findViewById(R.id.trending_products_recyclerview);
+        product_recyclerview = view.findViewById(R.id.popular_products_recyclerview);
         notifications = view.findViewById(R.id.notifications);
 
         // Toolbar settings
@@ -125,38 +119,21 @@ public class HomeFragment extends Fragment {
         category_recyclerview.setLayoutManager(linearLayoutManager);
 
         //Popular Products Recyclerview
-        ArrayList<PopularProductModel> popularProductList = new ArrayList<>();
-        popularProductList.add(new PopularProductModel(R.drawable.download, "Men’s Travel Brown checkered spread Collar Casual Shirt", "₹754"));
-        popularProductList.add(new PopularProductModel(R.drawable.t_shirt, "Men’s White TShirt", "₹450"));
-        popularProductList.add(new PopularProductModel(R.drawable.laptop, "Lenovo IdeaPad Gaming 3 Laptop (8gb Ram, 512gb Hard Disk)", "₹55000"));
-        popularProductList.add(new PopularProductModel(R.drawable.mobile, "Realme 7 pro (6 gb Ram and 64 gb Storage)", "₹15343"));
-        popularProductList.add(new PopularProductModel(R.drawable.download, "Men’s Travel Brown checkered spread Collar Casual Shirt", "₹1400"));
-        popularProductList.add(new PopularProductModel(R.drawable.laptop, "Lenovo IdeaPad Gaming 3 Laptop (8gb Ram, 512gb Hard Disk)", "₹55000"));
-        popularProductList.add(new PopularProductModel(R.drawable.mobile, "Realme 7 pro (6 gb Ram and 64 gb Storage)", "₹15343"));
-        popularProductList.add(new PopularProductModel(R.drawable.download, "Men’s Travel Brown checkered spread Collar Casual Shirt", "₹1400"));
+        ArrayList<PopularProductModel> productList = new ArrayList<>();
+        productList.add(new PopularProductModel(R.drawable.download, "Men’s Travel Brown checkered spread Collar Casual Shirt", "₹754"));
+        productList.add(new PopularProductModel(R.drawable.t_shirt, "Men’s White TShirt", "₹450"));
+        productList.add(new PopularProductModel(R.drawable.laptop, "Lenovo IdeaPad Gaming 3 Laptop (8gb Ram, 512gb Hard Disk)", "₹55000"));
+        productList.add(new PopularProductModel(R.drawable.mobile, "Realme 7 pro (6 gb Ram and 64 gb Storage)", "₹15343"));
+        productList.add(new PopularProductModel(R.drawable.download, "Men’s Travel Brown checkered spread Collar Casual Shirt", "₹1400"));
+        productList.add(new PopularProductModel(R.drawable.laptop, "Lenovo IdeaPad Gaming 3 Laptop (8gb Ram, 512gb Hard Disk)", "₹55000"));
+        productList.add(new PopularProductModel(R.drawable.mobile, "Realme 7 pro (6 gb Ram and 64 gb Storage)", "₹15343"));
+        productList.add(new PopularProductModel(R.drawable.download, "Men’s Travel Brown checkered spread Collar Casual Shirt", "₹1400"));
 
-        PopularProductAdapter popularProductAdapter = new PopularProductAdapter(popularProductList, view.getContext());
-        popular_product_recyclerview.setAdapter(popularProductAdapter);
+        ProductAdapter productAdapter = new ProductAdapter(productList, view.getContext());
+        product_recyclerview.setAdapter(productAdapter);
 
-        LinearLayoutManager popular_product_layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        popular_product_recyclerview.setLayoutManager(popular_product_layout);
-
-        //Trending Products Recyclerview
-        ArrayList<TrendingProductModel> trendingProductList = new ArrayList<>();
-        trendingProductList.add(new TrendingProductModel(R.drawable.download, "Men’s Travel Brown checkered spread Collar Casual Shirt", "₹754"));
-        trendingProductList.add(new TrendingProductModel(R.drawable.t_shirt, "Men’s White TShirt", "₹450"));
-        trendingProductList.add(new TrendingProductModel(R.drawable.laptop, "Lenovo IdeaPad Gaming 3 Laptop (8gb Ram, 512gb Hard Disk)", "₹55000"));
-        trendingProductList.add(new TrendingProductModel(R.drawable.mobile, "Realme 7 pro (6 gb Ram and 64 gb Storage)", "₹15343"));
-        trendingProductList.add(new TrendingProductModel(R.drawable.download, "Men’s Travel Brown checkered spread Collar Casual Shirt", "₹1400"));
-        trendingProductList.add(new TrendingProductModel(R.drawable.laptop, "Lenovo IdeaPad Gaming 3 Laptop (8gb Ram, 512gb Hard Disk)", "₹55000"));
-        trendingProductList.add(new TrendingProductModel(R.drawable.mobile, "Realme 7 pro (6 gb Ram and 64 gb Storage)", "₹15343"));
-        trendingProductList.add(new TrendingProductModel(R.drawable.download, "Men’s Travel Brown checkered spread Collar Casual Shirt", "₹1400"));
-
-        TrendingProductAdapter trendingProductAdapter = new TrendingProductAdapter(trendingProductList, view.getContext());
-        trending_product_recyclerview.setAdapter(trendingProductAdapter);
-
-        LinearLayoutManager trending_product_layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        trending_product_recyclerview.setLayoutManager(trending_product_layout);
+        GridLayoutManager productLayout = new GridLayoutManager(view.getContext(), 2);
+        product_recyclerview.setLayoutManager(productLayout);
 
         return view;
     }

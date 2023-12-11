@@ -10,16 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.practice.e_commerce_app.Models.TrendingProductModel;
+import com.practice.e_commerce_app.Models.PopularProductModel;
 import com.practice.e_commerce_app.R;
 
 import java.util.ArrayList;
 
-public class TrendingProductAdapter extends RecyclerView.Adapter<TrendingProductAdapter.viewHolder> {
-    ArrayList<TrendingProductModel> list;
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.viewHolder> {
+    ArrayList<PopularProductModel> list;
     Context context;
 
-    public TrendingProductAdapter(ArrayList<TrendingProductModel> list, Context context) {
+    public ProductAdapter(ArrayList<PopularProductModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -27,13 +27,13 @@ public class TrendingProductAdapter extends RecyclerView.Adapter<TrendingProduct
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.sample_popular_product_design, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.sample_product_design, parent, false);
         return new viewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        TrendingProductModel model = list.get(position);
+        PopularProductModel model = list.get(position);
         holder.imageView.setImageResource(model.getImage());
         holder.title.setText(model.getTitle());
         holder.price.setText(model.getPrice());
