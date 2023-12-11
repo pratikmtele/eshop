@@ -97,7 +97,6 @@ public class AddProductActivity extends AppCompatActivity {
 
         binding.autoCompleteText.setOnItemClickListener((parent, view, position, id) -> {
             category_id = list.get((int)id).getCategory_id();
-            Toast.makeText(AddProductActivity.this, category_id, Toast.LENGTH_SHORT).show();
         });
 
         // insert product details in to the database
