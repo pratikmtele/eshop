@@ -10,15 +10,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     AppCompatButton signup_btn, login_btn, reset_btn, cancel_btn;
@@ -64,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        if (auth.getCurrentUser()!=null) {
+        if (auth.getCurrentUser() != null) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -78,17 +74,17 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(view -> {
             forgotPassDialog.show();
         });
-        
+
         cancel_btn.setOnClickListener(view -> {
             forgotPassDialog.hide();
         });
 
         reset_btn.setOnClickListener(view -> {
-           if (txtEmail.getText().toString().isEmpty()) {
-               Toast.makeText(LoginActivity.this, "Enter your email address.", Toast.LENGTH_SHORT).show();
-           } else {
-               forgetEmail(txtEmail.getText().toString());
-           }
+            if (txtEmail.getText().toString().isEmpty()) {
+                Toast.makeText(LoginActivity.this, "Enter your email address.", Toast.LENGTH_SHORT).show();
+            } else {
+                forgetEmail(txtEmail.getText().toString());
+            }
         });
     }
 

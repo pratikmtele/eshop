@@ -83,9 +83,9 @@ public class HomeFragment extends Fragment {
         reference.child("Banners").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<SlideModel>slideModels = new ArrayList<>();
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                   slideModels.add(new SlideModel(snapshot.getValue().toString(), ScaleTypes.FIT));
+                ArrayList<SlideModel> slideModels = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    slideModels.add(new SlideModel(snapshot.getValue().toString(), ScaleTypes.FIT));
                 }
                 imageSlider.setImageList(slideModels, ScaleTypes.FIT);
             }
@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
         reference.child("Categories").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                for (DataSnapshot snapshot: datasnapshot.getChildren()) {
+                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                     list.add(new CategoryModel(snapshot.getValue().toString()));
                 }
                 CategoryAdapter categoryAdapter = new CategoryAdapter(list, view.getContext());

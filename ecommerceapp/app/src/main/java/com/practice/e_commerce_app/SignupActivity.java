@@ -14,9 +14,10 @@ import com.practice.e_commerce_app.databinding.ActivitySignupBinding;
 
 public class SignupActivity extends AppCompatActivity {
 
+    ActivitySignupBinding binding;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
-    ActivitySignupBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +33,17 @@ public class SignupActivity extends AppCompatActivity {
         });
 
         binding.signUpBtn.setOnClickListener(view -> {
-           if (binding.signupName.getText().toString().equals("") ||
-               binding.signupEmail.getText().toString().equals("") ||
-               binding.signupPhone.getText().toString().equals("") ||
-               binding.signupPassword.getText().toString().equals("")){
+            if (binding.signupName.getText().toString().equals("") ||
+                    binding.signupEmail.getText().toString().equals("") ||
+                    binding.signupPhone.getText().toString().equals("") ||
+                    binding.signupPassword.getText().toString().equals("")) {
 
-               Toast.makeText(SignupActivity.this, "Fill all required fields.", Toast.LENGTH_SHORT).show();
-           } else {
-               binding.signupProgressBar.setVisibility(View.VISIBLE);
-               binding.signUpBtn.setVisibility(View.INVISIBLE);
-               createAccount();
-           }
+                Toast.makeText(SignupActivity.this, "Fill all required fields.", Toast.LENGTH_SHORT).show();
+            } else {
+                binding.signupProgressBar.setVisibility(View.VISIBLE);
+                binding.signUpBtn.setVisibility(View.INVISIBLE);
+                createAccount();
+            }
         });
 
         binding.logInBtn.setOnClickListener(view -> {
@@ -50,6 +51,7 @@ public class SignupActivity extends AppCompatActivity {
             startActivity(loginIntent);
         });
     }
+
     public void createAccount() {
         auth.createUserWithEmailAndPassword(binding.signupEmail.getText().toString(), binding.signupPassword.getText()
                 .toString()).addOnCompleteListener(task -> {
@@ -60,7 +62,7 @@ public class SignupActivity extends AppCompatActivity {
                         binding.signupPhone.getText().toString(),
                         0);
 
-                database.getReference().child("Users").child( task.getResult().getUser().getUid()).setValue(user);
+                database.getReference().child("Users").child(task.getResult().getUser().getUid()).setValue(user);
                 binding.signupProgressBar.setVisibility(View.GONE);
                 binding.signUpBtn.setVisibility(View.VISIBLE);
                 Toast.makeText(SignupActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();

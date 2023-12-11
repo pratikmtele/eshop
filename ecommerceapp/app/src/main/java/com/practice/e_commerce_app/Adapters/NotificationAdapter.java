@@ -14,7 +14,7 @@ import com.practice.e_commerce_app.R;
 
 import java.util.ArrayList;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.viewHolder>{
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.viewHolder> {
 
     ArrayList<NotificationModel> list;
     Context context;
@@ -44,8 +44,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return list.size();
     }
 
-    public class viewHolder extends RecyclerView.ViewHolder{
+    public class viewHolder extends RecyclerView.ViewHolder {
         TextView heading, desc, time;
+
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             heading = itemView.findViewById(R.id.notification_heading);

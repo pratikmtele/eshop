@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotificationActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".NotificationActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,26 +23,26 @@
                 android:id="@+id/notification_back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:src="@drawable/baseline_arrow_back"
+                app:layout_constraintBottom_toBottomOf="@id/textview"
+                app:layout_constraintEnd_toStartOf="@id/textview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/textview"
-                app:layout_constraintEnd_toStartOf="@id/textview"
-                app:layout_constraintBottom_toBottomOf="@id/textview"
-                android:layout_marginStart="15dp"
-                tools:ignore="ContentDescription"
-                app:tint="@color/green" />
+                app:tint="@color/green"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
-                android:layout_marginEnd="30dp"
                 android:text="@string/notifications"
                 android:textColor="@color/green"
                 android:textSize="18sp"
-                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/notification_back_btn"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -51,11 +51,11 @@
                 android:id="@+id/no_notification_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="90dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textview"
-                android:layout_marginTop="90dp"
-                android:visibility="gone">
+                app:layout_constraintTop_toBottomOf="@id/textview">
 
                 <ImageView
                     android:id="@+id/image_view"
@@ -70,11 +70,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_notification"
+                    android:textColor="@color/gray"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/image_view"
-                    app:layout_constraintTop_toBottomOf="@id/image_view"
                     app:layout_constraintEnd_toEndOf="@id/image_view"
-                    android:textColor="@color/gray"/>
+                    app:layout_constraintStart_toStartOf="@+id/image_view"
+                    app:layout_constraintTop_toBottomOf="@id/image_view" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

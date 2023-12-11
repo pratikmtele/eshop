@@ -15,7 +15,7 @@ import com.practice.e_commerce_app.R;
 
 import java.util.ArrayList;
 
-public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.viewHolder>{
+public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.viewHolder> {
 
     ArrayList<CartProductModel> list;
     Context context;
@@ -49,6 +49,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
     public class viewHolder extends RecyclerView.ViewHolder {
         ImageView product_image, add_quantity, minus_quantity, remove_product;
         TextView product_name, price, quantity;
+
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             product_image = itemView.findViewById(R.id.cart_product_image);

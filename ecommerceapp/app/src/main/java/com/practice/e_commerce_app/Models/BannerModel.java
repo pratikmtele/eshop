@@ -1,7 +1,5 @@
 package com.practice.e_commerce_app.Models;
 
-import java.util.ArrayList;
-
 public class BannerModel {
     String bannerId;
     String bannerUrls;
@@ -11,7 +9,7 @@ public class BannerModel {
         this.bannerUrls = bannerUrls;
     }
 
-    public BannerModel(){
+    public BannerModel() {
 
     }
 

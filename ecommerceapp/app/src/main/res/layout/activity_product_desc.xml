@@ -66,9 +66,9 @@
                 android:layout_height="400dp"
                 app:iss_auto_cycle="false"
                 app:iss_title_background="@color/light_gray"
-                app:layout_constraintTop_toBottomOf="@id/toolBar"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/toolBar" />
 
             <TextView
                 android:id="@+id/product_title"
@@ -77,8 +77,8 @@
                 android:layout_margin="10dp"
                 android:maxLines="3"
                 android:text="Lenovo IdeaPad Gaming 3 Ryzen 5 4500H(8 GB/512 GB SSD/Windows 11 Home/4 GB Graphics/NVIDIA Geforce RTX 1650) "
-                android:textSize="16sp"
                 android:textColor="@color/black"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_image_slider" />
@@ -87,39 +87,39 @@
                 android:id="@+id/product_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="₹ 55344"
-                app:layout_constraintTop_toBottomOf="@id/product_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="10dp"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="₹ 55344"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textSize="18sp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/product_title" />
 
             <TextView
                 android:id="@+id/delivery_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delivery to:"
-                app:layout_constraintTop_toBottomOf="@id/product_price"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
+                android:text="Delivery to:"
+                android:textColor="@color/gray"
                 android:textSize="16sp"
-                android:textColor="@color/gray"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/product_price" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/delivery_to"
-                android:text="Bangar Nagar, Waghapure Road, Near Ram Mandir, Yavatmal - 445001"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
-                android:textSize="16sp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:textColor="@color/black"/>
+                android:text="Bangar Nagar, Waghapure Road, Near Ram Mandir, Yavatmal - 445001"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/delivery_to" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -129,25 +129,25 @@
         android:id="@+id/add_to_cart_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/add_to_cart_btn"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/add_to_cart"
         android:textAllCaps="false"
-        android:fontFamily="@font/poppins_semibold"
-        android:background="@drawable/add_to_cart_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/buy_now_btn"/>
+        app:layout_constraintEnd_toStartOf="@id/buy_now_btn"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buy_now_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/buy_now_btn"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/buy_now"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:fontFamily="@font/poppins_semibold"
-        android:background="@drawable/buy_now_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/add_to_cart_btn"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/add_to_cart_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

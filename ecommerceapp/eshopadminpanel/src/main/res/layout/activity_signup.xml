@@ -78,7 +78,6 @@
                 tools:ignore="VisualLintTextFieldSize" />
 
             <ImageView
-                android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -106,7 +105,6 @@
                 tools:ignore="VisualLintTextFieldSize" />
 
             <ImageView
-                android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -134,7 +132,6 @@
                 tools:ignore="VisualLintTextFieldSize" />
 
             <ImageView
-                android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -162,7 +159,6 @@
                 tools:ignore="VisualLintTextFieldSize" />
 
             <ImageView
-                android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -172,7 +168,6 @@
                 app:layout_constraintTop_toTopOf="@+id/signup_password" />
 
             <ProgressBar
-                android:id="@+id/signup_progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
@@ -227,7 +222,6 @@
                 tools:ignore="TextContrastCheck" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/log_in_btn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"

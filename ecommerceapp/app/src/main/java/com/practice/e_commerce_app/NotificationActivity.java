@@ -1,11 +1,11 @@
 package com.practice.e_commerce_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.practice.e_commerce_app.Adapters.NotificationAdapter;
 import com.practice.e_commerce_app.Fragments.HomeFragment;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class NotificationActivity extends AppCompatActivity {
     ActivityNotificationBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

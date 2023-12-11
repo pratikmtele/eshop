@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class CartFragment extends Fragment {
     RecyclerView cart_product_recyclerview;
+
     public CartFragment() {
         // Required empty public constructor
     }
@@ -37,12 +38,12 @@ public class CartFragment extends Fragment {
         cartProductList.add(new CartProductModel(R.drawable.laptop, "IdeaPad Gaming 3 Laptop (6 gb Ram and 512gb " +
                 "Hard Disk)", "₹55000", "1"));
         cartProductList.add(new CartProductModel(R.drawable.t_shirt, "Men's travel white t-shirt", "₹490", "2"));
-        cartProductList.add(new CartProductModel(R.drawable.mobile, "IQOO z7 pro (6gb Ram and 128gb Storage)","₹15745","1"));
-        cartProductList.add(new CartProductModel(R.drawable.download, "Men's red checkered shirt","₹2100","3"));
+        cartProductList.add(new CartProductModel(R.drawable.mobile, "IQOO z7 pro (6gb Ram and 128gb Storage)", "₹15745", "1"));
+        cartProductList.add(new CartProductModel(R.drawable.download, "Men's red checkered shirt", "₹2100", "3"));
         cartProductList.add(new CartProductModel(R.drawable.laptop, "IdeaPad Gaming 3 Laptop (6 gb Ram and 512gb " +
                 "Hard Disk)", "₹55000", "1"));
         cartProductList.add(new CartProductModel(R.drawable.t_shirt, "Men's travel white t-shirt", "₹490", "2"));
-        cartProductList.add(new CartProductModel(R.drawable.mobile, "IQOO z7 pro (6gb Ram and 128gb Storage)","₹15745","1"));
+        cartProductList.add(new CartProductModel(R.drawable.mobile, "IQOO z7 pro (6gb Ram and 128gb Storage)", "₹15745", "1"));
 
         CartProductAdapter cartProductAdapter = new CartProductAdapter(cartProductList, view.getContext());
         cart_product_recyclerview.setAdapter(cartProductAdapter);

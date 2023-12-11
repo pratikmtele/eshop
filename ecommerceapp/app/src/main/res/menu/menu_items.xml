@@ -6,24 +6,29 @@
             android:icon="@drawable/baseline_home"
             android:title="Home" />
 
-        <item android:id="@+id/nav_profile"
+        <item
+            android:id="@+id/nav_profile"
             android:icon="@drawable/baseline_person"
-            android:title="Profile"/>
+            android:title="Profile" />
 
-        <item android:id="@+id/nav_my_orders"
+        <item
+            android:id="@+id/nav_my_orders"
             android:icon="@drawable/baseline_shopping_cart"
-            android:title="My Orders"/>
+            android:title="My Orders" />
 
-        <item android:id="@+id/navsettings"
+        <item
+            android:id="@+id/navsettings"
             android:icon="@drawable/baseline_settings"
-            android:title="Settings"/>
+            android:title="Settings" />
 
-        <item android:id="@+id/nav_about_us"
+        <item
+            android:id="@+id/nav_about_us"
             android:icon="@drawable/round_info"
-            android:title="About us"/>
+            android:title="About us" />
 
-        <item android:id="@+id/nav_logout"
+        <item
+            android:id="@+id/nav_logout"
             android:icon="@drawable/baseline_logout"
-            android:title="Logout"/>
+            android:title="Logout" />
     </group>
 </menu>

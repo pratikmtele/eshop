@@ -167,12 +167,12 @@
         android:id="@+id/signup_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:indeterminateTint="@color/green"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signup_password"
-        android:indeterminateTint="@color/green"
-        android:layout_marginTop="26dp"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@id/signup_password" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sign_up_btn"
