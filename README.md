@@ -1,2 +1,2 @@
 # eshop
- I developed ecommerce android app using firebase
+ I developed ecommerce android app using Java and Firebase as database.
