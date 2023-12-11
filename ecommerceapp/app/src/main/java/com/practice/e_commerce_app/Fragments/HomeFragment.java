@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment {
 
         imageSlider = view.findViewById(R.id.product_image_slider);
         category_recyclerview = view.findViewById(R.id.category_recyclerview);
-        product_recyclerview = view.findViewById(R.id.popular_products_recyclerview);
+        product_recyclerview = view.findViewById(R.id.products_recyclerview);
         notifications = view.findViewById(R.id.notifications);
 
         // Toolbar settings

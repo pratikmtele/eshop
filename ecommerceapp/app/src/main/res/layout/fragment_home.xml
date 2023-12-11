@@ -120,7 +120,7 @@
                 app:layout_constraintTop_toBottomOf="@id/linearlayout1">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/popular_products_recyclerview"
+                    android:id="@+id/products_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
