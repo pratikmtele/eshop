@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductDescActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/add_to_cart_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/back_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/baseline_arrow_back"
+                        app:layout_constraintTop_toTopOf="@id/searchbar"
+                        app:layout_constraintBottom_toBottomOf="@id/searchbar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:tint="@color/green"
+                        android:layout_marginStart="-5dp"/>
+
+                    <android.widget.SearchView
+                        android:id="@+id/searchbar"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/searchbar_border"
+                        android:closeIcon="@drawable/baseline_close"
+                        android:iconifiedByDefault="false"
+                        android:queryHint="Search"
+                        android:searchIcon="@drawable/baseline_search"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/notifications"
+                        app:layout_constraintStart_toEndOf="@id/back_btn"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/notifications"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/baseline_shopping_cart"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription"
+                        app:tint="@color/green" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <ListView
+                android:id="@+id/searchList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolBar"
+                app:layout_constraintBottom_toTopOf="@id/product_image_slider"
+                tools:ignore="NestedScrolling" />
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/product_image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                app:iss_auto_cycle="false"
+                app:iss_title_background="@color/light_gray"
+                app:layout_constraintTop_toBottomOf="@id/toolBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_favorite_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolBar"
+                android:padding="5dp"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/product_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:maxLines="3"
+                android:text="Lenovo IdeaPad Gaming 3 Ryzen 5 4500H(8 GB/512 GB SSD/Windows 11 Home/4 GB Graphics/NVIDIA Geforce RTX 1650) "
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/product_image_slider" />
+
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="₹ 55344"
+                app:layout_constraintTop_toBottomOf="@id/product_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/delivery_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery to:"
+                app:layout_constraintTop_toBottomOf="@id/product_price"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/delivery_to"
+                android:text="Bangar Nagar, Waghapure Road, Near Ram Mandir, Yavatmal - 445001"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_to_cart_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add_to_cart"
+        android:textAllCaps="false"
+        android:fontFamily="@font/poppins_semibold"
+        android:background="@drawable/add_to_cart_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/buy_now_btn"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buy_now_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buy_now"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_semibold"
+        android:background="@drawable/buy_now_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/add_to_cart_btn"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

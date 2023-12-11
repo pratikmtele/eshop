@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "319244185692",
+    "firebase_url": "https://e-commerce-app-fd2e3-default-rtdb.firebaseio.com",
+    "project_id": "e-commerce-app-fd2e3",
+    "storage_bucket": "e-commerce-app-fd2e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319244185692:android:5120ce5d861aab4386f699",
+        "android_client_info": {
+          "package_name": "com.example.eshopadminpanel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATwZtzgmWLKKpNKPuWfhsQViF5CVHlclA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319244185692:android:583759bae508d2cb86f699",
+        "android_client_info": {
+          "package_name": "com.practice.e_commerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATwZtzgmWLKKpNKPuWfhsQViF5CVHlclA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,10 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Ecommerceapp" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:statusBarColor">@color/green</item>
+        <item name="navigationIconTint">@color/green</item>
+        <item name="android:activatedBackgroundIndicator">@color/green</item>
+    </style>
+</resources>

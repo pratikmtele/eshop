@@ -1,0 +1,22 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Ecommerceapp" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/green</item>
+        <item name="tintNavigationIcon">@color/green</item>
+        <item name="android:activatedBackgroundIndicator">@color/green</item>
+    </style>
+
+    <style name="Theme.Ecommerceapp" parent="Base.Theme.Ecommerceapp" />
+
+    <style name="Theme.Ecommerceapp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Ecommerceapp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Ecommerceapp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>
