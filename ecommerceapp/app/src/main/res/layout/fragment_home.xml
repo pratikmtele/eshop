@@ -36,30 +36,24 @@
                     android:layout_gravity="center"
                     android:background="@color/white">
 
-                    <android.widget.SearchView
-                        android:id="@+id/searchbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginEnd="50dp"
-                        android:background="@drawable/searchbar_border"
-                        android:closeIcon="@drawable/baseline_close"
-                        android:iconifiedByDefault="false"
-                        android:queryHint="Search"
-                        android:searchIcon="@drawable/baseline_search"
-                        android:singleLine="true"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toStartOf="@+id/notifications"
-                        app:layout_constraintStart_toEndOf="parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="@string/app_name"
+                        android:textColor="@color/green"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/notifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="15dp"
                         android:src="@drawable/baseline_notifications"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="ContentDescription" />
@@ -67,15 +61,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.appcompat.widget.Toolbar>
-
-            <ListView
-                android:id="@+id/searchList"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolBar"
-                tools:ignore="NestedScrolling" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_layout"
@@ -87,7 +72,7 @@
                 app:cardElevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/searchList">
+                app:layout_constraintTop_toBottomOf="@id/toolBar">
 
                 <LinearLayout
                     android:layout_width="match_parent"

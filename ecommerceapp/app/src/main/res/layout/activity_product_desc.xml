@@ -37,56 +37,28 @@
                         android:id="@+id/back_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="-5dp"
                         android:src="@drawable/baseline_arrow_back"
-                        app:layout_constraintTop_toTopOf="@id/searchbar"
-                        app:layout_constraintBottom_toBottomOf="@id/searchbar"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:tint="@color/green"
-                        android:layout_marginStart="-5dp"/>
-
-                    <android.widget.SearchView
-                        android:id="@+id/searchbar"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/searchbar_border"
-                        android:closeIcon="@drawable/baseline_close"
-                        android:iconifiedByDefault="false"
-                        android:queryHint="Search"
-                        android:searchIcon="@drawable/baseline_search"
-                        android:singleLine="true"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        app:layout_constraintEnd_toStartOf="@+id/notifications"
-                        app:layout_constraintStart_toEndOf="@id/back_btn"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/green" />
 
                     <ImageView
                         android:id="@+id/notifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/baseline_shopping_cart"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="ContentDescription"
-                        app:tint="@color/green" />
+                        app:tint="@color/green"
+                        tools:ignore="ContentDescription" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.appcompat.widget.Toolbar>
-
-            <ListView
-                android:id="@+id/searchList"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolBar"
-                app:layout_constraintBottom_toTopOf="@id/product_image_slider"
-                tools:ignore="NestedScrolling" />
 
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/product_image_slider"
@@ -97,15 +69,6 @@
                 app:layout_constraintTop_toBottomOf="@id/toolBar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_favorite_border"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolBar"
-                android:padding="5dp"
-                android:layout_margin="10dp"/>
 
             <TextView
                 android:id="@+id/product_title"

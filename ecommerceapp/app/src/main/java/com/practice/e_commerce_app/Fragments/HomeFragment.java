@@ -40,10 +40,6 @@ import com.practice.e_commerce_app.R;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    SearchView searchbar;
-    ListView searchList;
-    ArrayList<String> search_items = new ArrayList<>();
-    ArrayAdapter<String> searchAdapter;
     ImageSlider imageSlider;
     ImageView notifications;
     RecyclerView category_recyclerview, popular_product_recyclerview, trending_product_recyclerview;
@@ -73,34 +69,14 @@ public class HomeFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
 
-        searchbar = view.findViewById(R.id.searchbar);
-        searchList = view.findViewById(R.id.searchList);
         imageSlider = view.findViewById(R.id.product_image_slider);
         category_recyclerview = view.findViewById(R.id.category_recyclerview);
         popular_product_recyclerview = view.findViewById(R.id.popular_products_recyclerview);
         trending_product_recyclerview = view.findViewById(R.id.trending_products_recyclerview);
         notifications = view.findViewById(R.id.notifications);
 
-        searchList.setVisibility(View.GONE);
-
         // Toolbar settings
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
-        searchAdapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_list_item_1, search_items);
-        searchList.setAdapter(searchAdapter);
-        searchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                searchList.setVisibility(View.VISIBLE);
-                searchAdapter.getFilter().filter(s);
-                return false;
-            }
-        });
 
         //Notifications button
         notifications.setOnClickListener(view1 -> {
@@ -184,5 +160,4 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
-
 }
