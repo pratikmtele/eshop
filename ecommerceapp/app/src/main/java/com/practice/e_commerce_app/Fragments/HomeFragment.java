@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
     RecyclerView category_recyclerview, product_recyclerview;
     FirebaseDatabase database;
     DatabaseReference reference;
-    ArrayList<ProductModel> productList;
+    public ArrayList<ProductModel> productList;
     ProductAdapter productAdapter;
 
     public HomeFragment() {
@@ -50,7 +50,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        productList = new ArrayList<>();
+        productAdapter = new ProductAdapter(getContext(), productList);
     }
 
     @SuppressLint("MissingInflatedId")
@@ -61,8 +62,6 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         Toolbar toolbar = view.findViewById(R.id.toolBar);
-
-        productList = new ArrayList<>();
 
         //Firebase Instances
         database = FirebaseDatabase.getInstance();
@@ -122,12 +121,34 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
         category_recyclerview.setLayoutManager(linearLayoutManager);
 
-        productList.add(new ProductModel("product1","Lenovo IdeaPad Gaming 3","₹54,454","https://firebasestorage.googleapis.com/v0/b/e-commerce-app-fd2e3.appspot.com/o/Images%2F-NlJRb2QcXFvAxMhD5b7%2Fimage0?alt=media&token=e36ece4e-e78b-49bc-8678-b3b894700973"));
-
         product_recyclerview.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
-        productAdapter = new ProductAdapter(view.getContext(), productList);
         product_recyclerview.setAdapter(productAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        productList.clear();
+        reference.child("Products").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    String product_id = snapshot.child("product_id").getValue(String.class);
+                    String product_title = snapshot.child("product_name").getValue(String.class);
+                    String product_price = snapshot.child("product_price").getValue(String.class);
+                    String product_imageUrl = snapshot.child("productUrls").child("0").getValue(String.class);
+
+                    ProductModel model = new ProductModel(product_id, product_title, "₹"+product_price, product_imageUrl);
+                    productList.add(model);
+                }
+                productAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }
