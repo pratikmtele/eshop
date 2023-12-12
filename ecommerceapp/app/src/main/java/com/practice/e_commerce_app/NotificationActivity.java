@@ -23,7 +23,7 @@ public class NotificationActivity extends AppCompatActivity {
         binding = ActivityNotificationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.notificationBackBtn.setOnClickListener(view -> {
+        binding.notificationsBackBtn.setOnClickListener(view -> {
             Intent backToPreviusIntent = new Intent(NotificationActivity.this, HomeFragment.class);
             startActivity(backToPreviusIntent);
         });

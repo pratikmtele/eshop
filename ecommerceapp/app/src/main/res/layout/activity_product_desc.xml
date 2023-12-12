@@ -91,6 +91,7 @@
                 android:layout_margin="10dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="₹ 55344"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"

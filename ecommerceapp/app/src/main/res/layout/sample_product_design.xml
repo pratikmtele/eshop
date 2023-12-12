@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:maxLines="2"
+                android:textColor="@color/black"
                 android:text="Lenovo IdeaPad Gaming 3 Ram 8gb and storage 64gb"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +52,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="₹54,545"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_detail_title" />

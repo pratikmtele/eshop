@@ -57,7 +57,7 @@ public class ProductDescActivity extends AppCompatActivity {
                 }
 
                 binding.productTitle.setText(product_title);
-                binding.productPrice.setText(product_price);
+                binding.productPrice.setText("₹"+product_price);
                 binding.productImageSlider.setImageList(slideModel, ScaleTypes.CENTER_INSIDE);
 
             }

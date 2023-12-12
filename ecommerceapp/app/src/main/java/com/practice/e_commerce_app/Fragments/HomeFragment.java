@@ -105,7 +105,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 for (DataSnapshot snapshot : datasnapshot.getChildren()) {
-                    list.add(new CategoryModel(snapshot.getValue().toString()));
+                    list.add(new CategoryModel(snapshot.getKey(), snapshot.getValue().toString()));
                 }
                 CategoryAdapter categoryAdapter = new CategoryAdapter(list, view.getContext());
                 category_recyclerview.setAdapter(categoryAdapter);
