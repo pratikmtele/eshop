@@ -1,8 +1,11 @@
 package com.practice.e_commerce_app.Models;
 
+import java.util.ArrayList;
+
 public class ProductModel {
     private String product_image, product_id;
     private String product_title, product_price;
+    private ArrayList<String> imageUrls;
 
     public ProductModel(String image, String title, String price) {
         this.product_image = image;
@@ -17,7 +20,22 @@ public class ProductModel {
         this.product_image = product_image;
     }
 
+    public ProductModel(String product_id, String product_title, String product_price, ArrayList<String> imageUrls) {
+        this.product_id = product_id;
+        this.product_title = product_title;
+        this.product_price = product_price;
+        this.imageUrls = imageUrls;
+    }
+
     public ProductModel() {
+    }
+
+    public String getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 
     public String getProduct_image() {
@@ -42,5 +60,13 @@ public class ProductModel {
 
     public void setProduct_price(String product_price) {
         this.product_price = product_price;
+    }
+
+    public ArrayList<String> getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(ArrayList<String> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 }

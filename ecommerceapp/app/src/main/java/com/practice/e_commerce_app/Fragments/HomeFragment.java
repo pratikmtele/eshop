@@ -82,7 +82,6 @@ public class HomeFragment extends Fragment {
         });
 
         // create a list for images //imageSlider
-
         reference.child("Banners").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
