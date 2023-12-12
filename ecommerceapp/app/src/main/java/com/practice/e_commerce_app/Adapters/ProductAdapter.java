@@ -10,49 +10,51 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.practice.e_commerce_app.Models.PopularProductModel;
+import com.bumptech.glide.Glide;
+import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.R;
 
 import java.util.ArrayList;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.viewHolder> {
-    ArrayList<PopularProductModel> list;
-    Context context;
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{
 
-    public ProductAdapter(ArrayList<PopularProductModel> list, Context context) {
-        this.list = list;
+    Context context;
+    ArrayList<ProductModel> arrayList;
+
+    public ProductAdapter(Context context, ArrayList<ProductModel> productModel) {
         this.context = context;
+        this.arrayList = productModel;
     }
 
     @NonNull
     @Override
-    public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.sample_product_design, parent, false);
-        return new viewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        PopularProductModel model = list.get(position);
-        holder.imageView.setImageResource(model.getImage());
-        holder.title.setText(model.getTitle());
-        holder.price.setText(model.getPrice());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ProductModel model = arrayList.get(position);
+        Glide.with(context).load(model.getProduct_image()).into(holder.productImageView);
+        holder.productTitleTextView.setText(model.getProduct_title());
+        holder.productPriceTextView.setText(model.getProduct_price());
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return arrayList.size();
     }
 
-    public class viewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView title, price;
-
-        public viewHolder(@NonNull View itemView) {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView productImageView;
+        TextView productTitleTextView, productPriceTextView;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.add_product_image);
-            title = itemView.findViewById(R.id.add_product_title);
-            price = itemView.findViewById(R.id.add_product_price);
+
+            productImageView = itemView.findViewById(R.id.product_detail_image);
+            productTitleTextView = itemView.findViewById(R.id.product_detail_title);
+            productPriceTextView = itemView.findViewById(R.id.product_detail_price);
         }
     }
 }
