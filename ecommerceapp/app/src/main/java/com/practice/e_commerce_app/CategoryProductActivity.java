@@ -52,6 +52,7 @@ public class CategoryProductActivity extends AppCompatActivity {
             finish();
         });
 
+        // call function to display products by category
         displayProductByCategory();
     }
 

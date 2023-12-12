@@ -121,6 +121,7 @@
                 app:layout_constraintTop_toBottomOf="@id/edt_password" />
 
             <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
@@ -174,6 +175,7 @@
                 app:layout_constraintTop_toBottomOf="@id/login_divider" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signUpBtn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"

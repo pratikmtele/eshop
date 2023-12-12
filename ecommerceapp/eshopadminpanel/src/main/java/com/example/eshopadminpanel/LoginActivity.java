@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Enter Email and Password.", Toast.LENGTH_SHORT).show();
             } else {
                 binding.loginBtn.setVisibility(View.INVISIBLE);
-                binding.loginProgressBar.setVisibility(View.VISIBLE);
+                binding.progressBar.setVisibility(View.VISIBLE);
                 userLogin(emailId, password);
             }
         });
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        binding.signupBtn.setOnClickListener(view -> {
+        binding.signUpBtn.setOnClickListener(view -> {
             Intent signupPageIntent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(signupPageIntent);
         });
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void userLogin(String emailId, String password) {
         auth.signInWithEmailAndPassword(emailId, password).addOnCompleteListener(task -> {
-            binding.loginProgressBar.setVisibility(View.GONE);
+            binding.progressBar.setVisibility(View.GONE);
             binding.loginBtn.setVisibility(View.VISIBLE);
             if (task.isSuccessful()) {
                 Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();

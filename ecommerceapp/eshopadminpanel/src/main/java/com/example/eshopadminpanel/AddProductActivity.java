@@ -112,11 +112,11 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void uploadImages() {
+        StorageReference imageFolder = FirebaseStorage.getInstance().getReference().child("Images");
+        String key = reference.child("Products").push().getKey();
         for (int i = 0; i < product_images.size(); i++) {
             Uri individualImages = product_images.get(i);
             if (individualImages != null) {
-                StorageReference imageFolder = FirebaseStorage.getInstance().getReference().child("Images");
-                String key = reference.child("Products").push().getKey();
                 StorageReference imageName = imageFolder.child(key).child("image" + i);
                 imageName.putFile(individualImages).addOnSuccessListener(taskSnapshot -> imageName.getDownloadUrl().addOnSuccessListener(uri -> {
                     product_images_urls.add(String.valueOf(uri));

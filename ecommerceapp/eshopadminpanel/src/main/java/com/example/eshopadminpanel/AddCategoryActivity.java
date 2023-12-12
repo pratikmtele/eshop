@@ -35,7 +35,7 @@ public class AddCategoryActivity extends AppCompatActivity {
             startActivity(new Intent(AddCategoryActivity.this, MainActivity.class));
         });
 
-        binding.addCategory.setOnClickListener(v -> {
+        binding.edtCategory.setOnClickListener(v -> {
             String category = binding.edtCategory.getText().toString();
             if (!category.equals("")) {
                 progressDialog.show();
