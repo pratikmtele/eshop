@@ -10,10 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.practice.e_commerce_app.Helper.AddToCartProduct;
 import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.ProductDescActivity;
 import com.practice.e_commerce_app.R;
@@ -50,6 +53,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 handleProductClick(arrayList.get(holder.getAdapterPosition()).getProduct_id());
             }
         });
+
+        //Add to cart btn click event
+        holder.product_add_to_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AddToCartProduct().addToCartProduct(context, FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                        arrayList.get(holder.getAdapterPosition()).getProduct_id());
+            }
+        });
     }
 
     @Override
@@ -71,6 +83,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         ImageView productImageView;
         ConstraintLayout product_layout;
         TextView productTitleTextView, productPriceTextView;
+        AppCompatButton product_add_to_cart;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -78,6 +91,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             productImageView = itemView.findViewById(R.id.product_detail_image);
             productTitleTextView = itemView.findViewById(R.id.product_detail_title);
             productPriceTextView = itemView.findViewById(R.id.product_detail_price);
+            product_add_to_cart = itemView.findViewById(R.id.product_add_to_cart_btn);
         }
     }
 }

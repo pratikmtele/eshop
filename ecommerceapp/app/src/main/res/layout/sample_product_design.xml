@@ -58,6 +58,7 @@
                 app:layout_constraintTop_toBottomOf="@id/product_detail_title" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/product_add_to_cart_btn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
