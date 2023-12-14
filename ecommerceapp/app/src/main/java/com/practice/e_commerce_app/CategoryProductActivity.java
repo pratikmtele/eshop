@@ -48,8 +48,9 @@ public class CategoryProductActivity extends AppCompatActivity {
         category_id = intent.getStringExtra("category_id");
 
         binding.categoryProductBackBtn.setOnClickListener(view -> {
-            startActivity(new Intent(CategoryProductActivity.this, HomeFragment.class));
-            finish();
+            Intent intent1 = new Intent(CategoryProductActivity.this, MainActivity.class);
+            intent1.putExtra("FragmentTag", "HomeFragment");
+            startActivity(intent1);
         });
 
         // call function to display products by category

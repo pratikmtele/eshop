@@ -46,7 +46,7 @@
                         app:tint="@color/green" />
 
                     <ImageView
-                        android:id="@+id/notifications"
+                        android:id="@+id/cartActivity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"

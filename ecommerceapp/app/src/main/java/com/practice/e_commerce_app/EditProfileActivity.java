@@ -18,7 +18,8 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.editProfileBackBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(EditProfileActivity.this, ProfileFragment.class);
+            Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+            intent.putExtra("FragmentTag", "ProfileFragment");
             startActivity(intent);
         });
     }

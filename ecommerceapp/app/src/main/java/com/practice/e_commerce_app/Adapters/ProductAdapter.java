@@ -1,5 +1,6 @@
 package com.practice.e_commerce_app.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,6 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.practice.e_commerce_app.Fragments.CartFragment;
 import com.practice.e_commerce_app.Helper.AddToCartProduct;
 import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.ProductDescActivity;
@@ -27,6 +34,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     Context context;
     ArrayList<ProductModel> arrayList;
+    DatabaseReference reference;
 
     public ProductAdapter(Context context, ArrayList<ProductModel> productModel) {
         this.context = context;
@@ -60,6 +68,31 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             public void onClick(View view) {
                 new AddToCartProduct().addToCartProduct(context, FirebaseAuth.getInstance().getCurrentUser().getUid(),
                         arrayList.get(holder.getAdapterPosition()).getProduct_id());
+            }
+        });
+
+        isProductAddedToCart(holder, model.getProduct_id());
+    }
+
+    private void isProductAddedToCart(ViewHolder holder, String productId) {
+        reference = FirebaseDatabase.getInstance().getReference().child("CartProducts");
+        reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(productId)
+                .addValueEventListener(new ValueEventListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Boolean isAdded = snapshot.exists();
+                if (isAdded){
+                    holder.product_add_to_cart.setText("Added To cart");
+                    holder.product_add_to_cart.setEnabled(false);
+                    holder.product_add_to_cart.setBackgroundResource(R.drawable.button_stroke);
+                    holder.product_add_to_cart.setTextColor(R.color.black);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

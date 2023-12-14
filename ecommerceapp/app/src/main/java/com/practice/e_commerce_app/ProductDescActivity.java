@@ -1,21 +1,27 @@
 package com.practice.e_commerce_app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.practice.e_commerce_app.Fragments.CartFragment;
 import com.practice.e_commerce_app.Fragments.HomeFragment;
+import com.practice.e_commerce_app.Helper.AddToCartProduct;
 import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.databinding.ActivityProductDescBinding;
 
@@ -68,11 +74,48 @@ public class ProductDescActivity extends AppCompatActivity {
             }
         });
 
-        //binding.productImageSlider.setImageList(slideModel, ScaleTypes.CENTER_INSIDE);
-
         binding.backBtn.setOnClickListener(v -> {
-            startActivity(new Intent(ProductDescActivity.this, HomeFragment.class));
+            Intent intent = new Intent(ProductDescActivity.this, MainActivity.class);
+            intent.putExtra("FragmentTag", "HomeFragment");
+            startActivity(intent);
         });
 
+        binding.addToCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AddToCartProduct().addToCartProduct(getApplicationContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                        product_id);
+            }
+        });
+
+        binding.cartActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent = new Intent(ProductDescActivity.this, MainActivity.class);
+               intent.putExtra("FragmentTag", "CartFragment");
+               startActivity(intent);
+            }
+        });
+
+        isProductAddedToCart(FirebaseAuth.getInstance().getCurrentUser().getUid(), product_id);
+    }
+
+    private void isProductAddedToCart(String user_id, String productId) {
+        reference.child("CartProducts").child(user_id).child(productId).addValueEventListener(new ValueEventListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Boolean isAdded = snapshot.exists();
+                if (isAdded){
+                    binding.addToCartBtn.setText("Added To Cart");
+                    binding.addToCartBtn.setTextColor(R.color.black);
+                    binding.addToCartBtn.setEnabled(false);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

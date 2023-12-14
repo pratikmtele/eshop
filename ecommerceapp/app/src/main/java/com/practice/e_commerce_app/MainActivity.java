@@ -1,6 +1,7 @@
 package com.practice.e_commerce_app;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
         replaceFragment(new HomeFragment());
 
+        String fragmentToLoad =  getIntent().getStringExtra("FragmentTag");
+        if (fragmentToLoad != null)
+            loadFragment(fragmentToLoad);
+
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.bottom_home) {
                 replaceFragment(new HomeFragment());
@@ -39,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
+    }
+
+    private void loadFragment(String fragmentToLoad) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if ("CartFragment".equals(fragmentToLoad))
+            transaction.replace(R.id.frame_layout, new CartFragment()).commit();
+        else if ("HomeFragment".equals(fragmentToLoad))
+            transaction.replace(R.id.frame_layout, new HomeFragment()).commit();
+        else if ("ProfileFragment".equals(fragmentToLoad))
+            transaction.replace(R.id.frame_layout, new ProfileFragment()).commit();
     }
 
     private void replaceFragment(Fragment fragment) {

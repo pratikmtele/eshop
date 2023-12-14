@@ -24,8 +24,9 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.notificationsBackBtn.setOnClickListener(view -> {
-            Intent backToPreviusIntent = new Intent(NotificationActivity.this, HomeFragment.class);
-            startActivity(backToPreviusIntent);
+            Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+            intent.putExtra("FragmentTag", "HomeFragment");
+            startActivity(intent);
         });
 
         binding.noNotificationLayout.setVisibility(View.GONE);
