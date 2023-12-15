@@ -70,6 +70,7 @@ public class CartFragment extends Fragment {
                 model.setProduct_title(snapshot.child("product_name").getValue(String.class));
                 model.setProduct_price(snapshot.child("product_price").getValue(String.class));
                 model.setProduct_image(snapshot.child("productUrls").child("0").getValue(String.class));
+                model.setStock(snapshot.child("stock").getValue(String.class));
                 cartProductList.add(model);
 
                 cartProductAdapter.notifyDataSetChanged();

@@ -35,12 +35,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/out_of_stock_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginBottom="5dp"
                 android:letterSpacing="0.03"
-                android:text="Out of Stock"
                 android:textColor="@color/red"
                 android:textSize="13sp"
                 android:textStyle="bold"

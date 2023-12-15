@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ProductModel {
     private String product_image, product_id;
-    private String product_title, product_price;
+    private String product_title, product_price, stock;
     private ArrayList<String> imageUrls;
 
     public ProductModel(String image, String title, String price) {
@@ -13,11 +13,12 @@ public class ProductModel {
         this.product_price = price;
     }
 
-    public ProductModel(String product_id, String product_title, String product_price, String product_image){
+    public ProductModel(String product_id, String product_title, String product_price, String product_image, String stock){
         this.product_id = product_id;
         this.product_title = product_title;
         this.product_price = product_price;
         this.product_image = product_image;
+        this.stock = stock;
     }
 
     public ProductModel(String product_id, String product_title, String product_price, ArrayList<String> imageUrls) {
@@ -68,5 +69,13 @@ public class ProductModel {
 
     public void setImageUrls(ArrayList<String> imageUrls) {
         this.imageUrls = imageUrls;
+    }
+
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
     }
 }

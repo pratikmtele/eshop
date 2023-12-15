@@ -67,8 +67,9 @@ public class CategoryProductActivity extends AppCompatActivity {
                     String product_name = snapshot.child("product_name").getValue(String.class);
                     String product_price = snapshot.child("product_price").getValue(String.class);
                     String imageUrl = snapshot.child("productUrls").child(0+"").getValue(String.class);
+                    String stock = snapshot.child("stock").getValue(String.class);
 
-                    ProductModel model = new ProductModel(product_id, product_name, product_price, imageUrl);
+                    ProductModel model = new ProductModel(product_id, product_name, product_price, imageUrl, stock);
                     arrayList.add(model);
                 }
                 adapter.notifyDataSetChanged();

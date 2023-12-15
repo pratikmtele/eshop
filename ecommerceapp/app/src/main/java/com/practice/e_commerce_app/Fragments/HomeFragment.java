@@ -139,8 +139,9 @@ public class HomeFragment extends Fragment {
                     String product_title = snapshot.child("product_name").getValue(String.class);
                     String product_price = snapshot.child("product_price").getValue(String.class);
                     String product_imageUrl = snapshot.child("productUrls").child("0").getValue(String.class);
+                    String stock = snapshot.child("stock").getValue(String.class);
 
-                    ProductModel model = new ProductModel(product_id, product_title, "₹"+product_price, product_imageUrl);
+                    ProductModel model = new ProductModel(product_id, product_title, "₹"+product_price, product_imageUrl,stock);
                     productList.add(model);
                 }
                 productAdapter.notifyDataSetChanged();

@@ -68,6 +68,11 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
                 removeCartProduct(list.get(holder.getAdapterPosition()).getProduct_id());
             }
         });
+
+        if (list.get(holder.getAdapterPosition()).getStock() == "0" || list.get(holder.getAdapterPosition()).getStock() == null)
+            holder.out_of_stock.setText("Out of stock");
+        else
+            holder.out_of_stock.setText("");
     }
 
     private void removeCartProduct(String productId) {
@@ -97,7 +102,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
 
     public class viewHolder extends RecyclerView.ViewHolder {
         ImageView product_image, add_quantity, minus_quantity, remove_product;
-        TextView product_name, price, quantity;
+        TextView product_name, price, quantity, out_of_stock;
         ConstraintLayout cart_layout;
 
         public viewHolder(@NonNull View itemView) {
@@ -111,6 +116,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
             price = itemView.findViewById(R.id.cart_product_price);
             quantity = itemView.findViewById(R.id.cart_product_quantity);
             cart_layout = itemView.findViewById(R.id.Cart_Layout);
+            out_of_stock = itemView.findViewById(R.id.out_of_stock_msg);
         }
     }
 }
