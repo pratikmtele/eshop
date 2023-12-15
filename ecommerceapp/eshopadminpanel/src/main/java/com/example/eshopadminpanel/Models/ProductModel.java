@@ -5,7 +5,16 @@ import java.util.ArrayList;
 public class ProductModel {
     String product_name, product_id, category_id;
     ArrayList<String> productUrls;
-    String product_price;
+    String product_price, stock;
+
+    public ProductModel(String product_name, String product_id, String category_id, ArrayList<String> productUrls, String product_price, String stock) {
+        this.product_name = product_name;
+        this.product_id = product_id;
+        this.category_id = category_id;
+        this.productUrls = productUrls;
+        this.product_price = product_price;
+        this.stock = stock;
+    }
 
     public ProductModel(String product_name, String product_id, String category_id, ArrayList<String> productUrls, String product_price) {
         this.product_name = product_name;
@@ -56,5 +65,13 @@ public class ProductModel {
 
     public void setProduct_price(String product_price) {
         this.product_price = product_price;
+    }
+
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
     }
 }

@@ -44,7 +44,7 @@ public class AddProductActivity extends AppCompatActivity {
     ArrayList<CategoryModel> list;
     ProductImagesAdapter productImagesAdapter;
     CategoryModel categoryModel;
-    String category_id, product_name, price;
+    String category_id, product_name, price, stock;
     ProgressDialog progressDialog;
 
     @Override
@@ -100,7 +100,8 @@ public class AddProductActivity extends AppCompatActivity {
         binding.addProductBtn.setOnClickListener(v -> {
             product_name = binding.edtProductName.getText().toString();
             price = binding.edtPrice.getText().toString();
-            if (product_name == null || price == null || category_id == null) {
+            stock = binding.edtProductStock.getText().toString();
+            if (product_name == null || price == null || category_id == null || stock == null) {
                 Toast.makeText(this, "Please fill required fields", Toast.LENGTH_SHORT).show();
             } else {
                 progressDialog.show();
@@ -137,13 +138,18 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void storeLinks(ArrayList<String> productImagesUrls, String key) {
-        ProductModel productModel = new ProductModel(product_name, key, category_id, productImagesUrls, price);
+        ProductModel productModel = new ProductModel(product_name, key, category_id, productImagesUrls, price, stock);
 
         reference.child("Products").child(key).setValue(productModel).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 progressDialog.dismiss();
                 Toast.makeText(AddProductActivity.this, "Product Added Successfully", Toast.LENGTH_SHORT).show();
+                binding.edtPrice.setText("");
+                binding.edtProductName.setText("");
+                binding.edtProductStock.setText("");
+                product_images.clear();
+                productImagesAdapter.notifyDataSetChanged();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -183,7 +189,7 @@ public class AddProductActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             if (data.getClipData() != null) {
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 5; i++) {
                     product_images.add(data.getClipData().getItemAt(i).getUri());
                 }
                 productImagesAdapter.notifyDataSetChanged();
