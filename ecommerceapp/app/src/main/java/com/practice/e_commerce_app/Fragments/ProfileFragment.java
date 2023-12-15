@@ -15,16 +15,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.practice.e_commerce_app.EditProfileActivity;
 import com.practice.e_commerce_app.LoginActivity;
-import com.practice.e_commerce_app.Models.UserModel;
+import com.practice.e_commerce_app.NotificationActivity;
 import com.practice.e_commerce_app.R;
 
 public class ProfileFragment extends Fragment {
-    LinearLayout sign_out, edit_profile;
+    LinearLayout sign_out, edit_profile, notifications;
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference ref;
     TextView user_name;
-    UserModel user;
 
     public ProfileFragment() {
     }
@@ -41,6 +40,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         sign_out = view.findViewById(R.id.sign_out_layout);
         edit_profile = view.findViewById(R.id.edit_profile_layout);
+        notifications = view.findViewById(R.id.notifications_layout);
         user_name = view.findViewById(R.id.user_name);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -56,6 +56,14 @@ public class ProfileFragment extends Fragment {
             Intent intent = new Intent(view.getContext(), EditProfileActivity.class);
             startActivity(intent);
         });
+
+        notifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), NotificationActivity.class));
+            }
+        });
+
         return view;
     }
 }
