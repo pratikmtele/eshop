@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class CartFragment extends Fragment {
     ArrayList<ProductModel> cartProductList;
     DatabaseReference reference;
     CartProductAdapter cartProductAdapter;
+    TextView item_count, item_price, total_price, discount, delivery_charges;
 
     public CartFragment() {
         // Required empty public constructor
@@ -42,7 +44,13 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
+
         cart_product_recyclerview = view.findViewById(R.id.cart_recyclerview);
+        item_count = view.findViewById(R.id.items_count);
+        item_price = view.findViewById(R.id.items_price);
+        total_price = view.findViewById(R.id.total_price);
+        delivery_charges = view.findViewById(R.id.delivery_charges);
+        discount = view.findViewById(R.id.discount);
 
         // Firebase Instance
         reference = FirebaseDatabase.getInstance().getReference();
@@ -74,6 +82,7 @@ public class CartFragment extends Fragment {
                 cartProductList.add(model);
 
                 cartProductAdapter.notifyDataSetChanged();
+                displayOrderDetails();
             }
 
             @Override
@@ -81,6 +90,19 @@ public class CartFragment extends Fragment {
 
             }
         });
+    }
+
+    private void displayOrderDetails() {
+        item_count.setText("("+cartProductList.size()+" items)");
+        delivery_charges.setText("₹40");
+        discount.setText("₹0.0");
+        Double items_price = 0.0d ;
+        for (int i = 0; i < cartProductList.size(); i++){
+            items_price += Double.parseDouble(cartProductList.get(i).getProduct_price());
+        }
+        item_price.setText("₹"+items_price);
+        Double totalPrice = items_price + 40 ;
+        total_price.setText("₹"+totalPrice);
     }
 
     private void getCartProductId () {
