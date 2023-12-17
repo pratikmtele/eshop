@@ -74,7 +74,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 user.setEmail(snapshot.child("email").getValue(String.class));
                 user.setPhone(snapshot.child("phone").getValue(String.class));
                 user.setProfilePic(snapshot.child("profilePic").getValue(String.class));
-                if (user.getProfilePic() != null){
+                if (user.getProfilePic() != null) {
                     Glide.with(EditProfileActivity.this).load(user.getProfilePic()).into(binding.profileImage);
                 }
                 binding.uptName.setText(user.getName());
@@ -95,9 +95,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 String email = binding.uptEmail.getText().toString();
                 String phone = binding.uptPhone.getText().toString();
 
-                if (name.equals(user.getName()) && email.equals(user.getEmail()) && phone.equals(user.getPhone())){
+                if (name.equals(user.getName()) && email.equals(user.getEmail()) && phone.equals(user.getPhone())) {
                     return;
-                }else {
+                } else {
                     progressDialog.setTitle("Updating your details");
                     progressDialog.setMessage("Please wait while updating your details...");
                     progressDialog.show();
@@ -135,7 +135,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         ProfileName.putFile(profile_image).addOnSuccessListener(taskSnapshot -> ProfileName.getDownloadUrl().addOnSuccessListener(uri -> {
             String profile_image_url = String.valueOf(uri);
-                storeLinks(profile_image_url, FirebaseAuth.getInstance().getCurrentUser().getUid());
+            storeLinks(profile_image_url, FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         }).addOnFailureListener(e -> {
             Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -146,12 +146,12 @@ public class EditProfileActivity extends AppCompatActivity {
     private void storeLinks(String profileImageUrl, String userId) {
         reference.child("Users").child(userId).child("profilePic")
                 .setValue(profileImageUrl).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(EditProfileActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(EditProfileActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();

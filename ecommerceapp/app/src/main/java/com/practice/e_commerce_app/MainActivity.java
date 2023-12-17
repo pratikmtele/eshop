@@ -1,7 +1,6 @@
 package com.practice.e_commerce_app;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         replaceFragment(new HomeFragment());
 
-        String fragmentToLoad =  getIntent().getStringExtra("FragmentTag");
+        String fragmentToLoad = getIntent().getStringExtra("FragmentTag");
         if (fragmentToLoad != null)
             loadFragment(fragmentToLoad);
 

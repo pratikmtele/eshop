@@ -4,12 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
@@ -19,10 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.practice.e_commerce_app.Fragments.CartFragment;
-import com.practice.e_commerce_app.Fragments.HomeFragment;
 import com.practice.e_commerce_app.Helper.AddToCartProduct;
-import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.databinding.ActivityProductDescBinding;
 
 import java.util.ArrayList;
@@ -55,15 +50,15 @@ public class ProductDescActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 product_title = dataSnapshot.child("product_name").getValue(String.class);
                 product_price = dataSnapshot.child("product_price").getValue(String.class);
-                for (int i=0; i<3; i++){
-                    imageUrl = dataSnapshot.child("productUrls").child(i+"").getValue(String.class);
-                    if (imageUrl != null){
+                for (int i = 0; i < 3; i++) {
+                    imageUrl = dataSnapshot.child("productUrls").child(i + "").getValue(String.class);
+                    if (imageUrl != null) {
                         slideModel.add(new SlideModel(imageUrl, ScaleTypes.CENTER_INSIDE));
                     }
                 }
 
                 binding.productTitle.setText(product_title);
-                binding.productPrice.setText("₹"+product_price);
+                binding.productPrice.setText("₹" + product_price);
                 binding.productImageSlider.setImageList(slideModel, ScaleTypes.CENTER_INSIDE);
 
             }
@@ -91,9 +86,9 @@ public class ProductDescActivity extends AppCompatActivity {
         binding.cartActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(ProductDescActivity.this, MainActivity.class);
-               intent.putExtra("FragmentTag", "CartFragment");
-               startActivity(intent);
+                Intent intent = new Intent(ProductDescActivity.this, MainActivity.class);
+                intent.putExtra("FragmentTag", "CartFragment");
+                startActivity(intent);
             }
         });
 
@@ -106,12 +101,13 @@ public class ProductDescActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Boolean isAdded = snapshot.exists();
-                if (isAdded){
+                if (isAdded) {
                     binding.addToCartBtn.setText("Added To Cart");
                     binding.addToCartBtn.setTextColor(R.color.black);
                     binding.addToCartBtn.setEnabled(false);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

@@ -28,7 +28,7 @@ import com.practice.e_commerce_app.R;
 
 import java.util.ArrayList;
 
-public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProductAdapter.ViewHolder>{
+public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProductAdapter.ViewHolder> {
     Context context;
     ArrayList<ProductModel> list;
     DatabaseReference reference;
@@ -58,7 +58,7 @@ public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProduct
                 handleProductClickEvent(list.get(holder.getAdapterPosition()).getProduct_id());
             }
         });
-        
+
         holder.product_add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +78,7 @@ public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProduct
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Boolean isAdded = snapshot.exists();
-                        if (isAdded){
+                        if (isAdded) {
                             holder.product_add_to_cart.setText("Added to cart");
                             holder.product_add_to_cart.setEnabled(false);
                             holder.product_add_to_cart.setBackgroundResource(R.drawable.button_stroke);
@@ -109,6 +109,7 @@ public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProduct
         TextView product_title, product_price;
         ConstraintLayout product_layout;
         AppCompatButton product_add_to_cart;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             product_layout = itemView.findViewById(R.id.product_layout);

@@ -19,8 +19,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.practice.e_commerce_app.MainActivity;
-import com.practice.e_commerce_app.Models.CartProductModel;
 import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.ProductDescActivity;
 import com.practice.e_commerce_app.R;
@@ -50,7 +48,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
         ProductModel model = list.get(position);
         Glide.with(context).load(model.getProduct_image()).into(holder.product_image);
         holder.product_name.setText(model.getProduct_title());
-        holder.price.setText("₹"+model.getProduct_price());
+        holder.price.setText("₹" + model.getProduct_price());
 
         reference = FirebaseDatabase.getInstance().getReference();
 

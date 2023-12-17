@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.practice.e_commerce_app.Adapters.NotificationAdapter;
-import com.practice.e_commerce_app.Fragments.HomeFragment;
 import com.practice.e_commerce_app.Models.NotificationModel;
 import com.practice.e_commerce_app.databinding.ActivityNotificationBinding;
 

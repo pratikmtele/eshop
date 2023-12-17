@@ -13,7 +13,7 @@ public class ProductModel {
         this.product_price = price;
     }
 
-    public ProductModel(String product_id, String product_title, String product_price, String product_image, String stock){
+    public ProductModel(String product_id, String product_title, String product_price, String product_image, String stock) {
         this.product_id = product_id;
         this.product_title = product_title;
         this.product_price = product_price;

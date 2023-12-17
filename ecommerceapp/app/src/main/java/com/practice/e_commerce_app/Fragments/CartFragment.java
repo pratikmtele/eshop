@@ -93,25 +93,25 @@ public class CartFragment extends Fragment {
     }
 
     private void displayOrderDetails() {
-        item_count.setText("("+cartProductList.size()+" items)");
+        item_count.setText("(" + cartProductList.size() + " items)");
         delivery_charges.setText("₹40");
         discount.setText("₹0.0");
-        Double items_price = 0.0d ;
-        for (int i = 0; i < cartProductList.size(); i++){
+        Double items_price = 0.0d;
+        for (int i = 0; i < cartProductList.size(); i++) {
             items_price += Double.parseDouble(cartProductList.get(i).getProduct_price());
         }
-        item_price.setText("₹"+items_price);
-        Double totalPrice = items_price + 40 ;
-        total_price.setText("₹"+totalPrice);
+        item_price.setText("₹" + items_price);
+        Double totalPrice = items_price + 40;
+        total_price.setText("₹" + totalPrice);
     }
 
-    private void getCartProductId () {
+    private void getCartProductId() {
         reference.child("CartProducts").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String product_id = snapshot.getKey();
-                        displayCartProducts(product_id);
+                    displayCartProducts(product_id);
                 }
             }
 

@@ -1,13 +1,11 @@
 package com.practice.e_commerce_app;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.practice.e_commerce_app.Adapters.CategoryProductAdapter;
-import com.practice.e_commerce_app.Fragments.HomeFragment;
 import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.databinding.ActivityCategoryProductBinding;
 
@@ -28,6 +25,7 @@ public class CategoryProductActivity extends AppCompatActivity {
     CategoryProductAdapter adapter;
     DatabaseReference reference;
     String category_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,11 +60,11 @@ public class CategoryProductActivity extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String product_id = snapshot.child("product_id").getValue(String.class);
                     String product_name = snapshot.child("product_name").getValue(String.class);
                     String product_price = snapshot.child("product_price").getValue(String.class);
-                    String imageUrl = snapshot.child("productUrls").child(0+"").getValue(String.class);
+                    String imageUrl = snapshot.child("productUrls").child(0 + "").getValue(String.class);
                     String stock = snapshot.child("stock").getValue(String.class);
 
                     ProductModel model = new ProductModel(product_id, product_name, product_price, imageUrl, stock);
@@ -74,6 +72,7 @@ public class CategoryProductActivity extends AppCompatActivity {
                 }
                 adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

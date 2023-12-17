@@ -7,16 +7,13 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class AddToCartProduct {
     DatabaseReference reference;
 
-    public void addToCartProduct(Context context, String user_id, String product_id){
+    public void addToCartProduct(Context context, String user_id, String product_id) {
         reference = FirebaseDatabase.getInstance().getReference().child("CartProducts");
 
         reference.child(user_id).child(product_id).setValue(product_id).addOnSuccessListener(new OnSuccessListener<Void>() {

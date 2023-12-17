@@ -1,9 +1,8 @@
 package com.practice.e_commerce_app.Models;
 
-import com.google.firebase.firestore.auth.User;
-
 public class UserModel {
     String name, email, phone, address, profilePic;
+
     public UserModel(String name, String email, String phone) {
         this.name = name;
         this.email = email;
@@ -18,7 +17,7 @@ public class UserModel {
         this.profilePic = profilePic;
     }
 
-    public UserModel(){
+    public UserModel() {
     }
 
     public String getName() {
