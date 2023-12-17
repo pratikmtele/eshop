@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.practice.e_commerce_app.Helper.AddToCartProduct;
+import com.practice.e_commerce_app.Models.AddressModel;
 import com.practice.e_commerce_app.databinding.ActivityProductDescBinding;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class ProductDescActivity extends AppCompatActivity {
     String product_id, product_title, product_price;
     ArrayList<SlideModel> slideModel;
     String imageUrl;
+    AddressModel addressModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class ProductDescActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference();
 
         slideModel = new ArrayList<>();
+
+        addressModel = new AddressModel();
 
         Intent productIntent = getIntent();
         product_id = productIntent.getStringExtra("productId");
@@ -66,6 +70,23 @@ public class ProductDescActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(ProductDescActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // fetching address from the database
+        reference.child("Addresses").child(FirebaseAuth.getInstance().getCurrentUser()
+                .getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                addressModel = snapshot.getValue(AddressModel.class);
+                String address = addressModel.getBuildingName()+", "+addressModel.getArea()+", "+addressModel.getCity()+
+                        ", "+addressModel.getState()+"-"+addressModel.getPincode();
+                binding.userAddress.setText(address);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
