@@ -41,7 +41,7 @@
                 android:layout_marginEnd="30dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
-                android:text="Add delivery address"
+                android:text="Shopping address"
                 android:textColor="@color/green"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"

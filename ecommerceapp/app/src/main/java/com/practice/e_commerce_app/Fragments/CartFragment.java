@@ -1,5 +1,6 @@
 package com.practice.e_commerce_app.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.practice.e_commerce_app.Adapters.CartProductAdapter;
 import com.practice.e_commerce_app.Models.ProductModel;
+import com.practice.e_commerce_app.PlaceOrderActivity;
 import com.practice.e_commerce_app.R;
 
 import java.util.ArrayList;
@@ -30,6 +33,7 @@ public class CartFragment extends Fragment {
     DatabaseReference reference;
     CartProductAdapter cartProductAdapter;
     TextView item_count, item_price, total_price, discount, delivery_charges;
+    AppCompatButton place_order_btn;
 
     public CartFragment() {
         // Required empty public constructor
@@ -51,6 +55,7 @@ public class CartFragment extends Fragment {
         total_price = view.findViewById(R.id.total_price);
         delivery_charges = view.findViewById(R.id.delivery_charges);
         discount = view.findViewById(R.id.discount);
+        place_order_btn = view.findViewById(R.id.place_order_btn);
 
         // Firebase Instance
         reference = FirebaseDatabase.getInstance().getReference();
@@ -63,6 +68,14 @@ public class CartFragment extends Fragment {
         cart_product_recyclerview.setLayoutManager(linearLayoutManager);
 
         getCartProductId();
+
+        place_order_btn.setOnClickListener(view1 -> {
+            if (cartProductList.size() > 0){
+                Intent intent = new Intent(view1.getContext(), PlaceOrderActivity.class);
+                startActivity(intent);
+            }
+
+        });
 
         return view;
     }

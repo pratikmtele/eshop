@@ -12,20 +12,22 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddToCartProduct {
     DatabaseReference reference;
+    Boolean isSuccess = true;
+    public Boolean addToCartProduct(Context context, String user_id, String product_id) {
 
-    public void addToCartProduct(Context context, String user_id, String product_id) {
         reference = FirebaseDatabase.getInstance().getReference().child("CartProducts");
 
         reference.child(user_id).child(product_id).setValue(product_id).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
+                isSuccess = true;
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+               isSuccess = false;
             }
         });
+        return isSuccess;
     }
 }

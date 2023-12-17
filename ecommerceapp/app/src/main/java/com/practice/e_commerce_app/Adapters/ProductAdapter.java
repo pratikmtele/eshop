@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -64,8 +65,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.product_add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddToCartProduct().addToCartProduct(context, FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                Boolean isSuccess = new AddToCartProduct().addToCartProduct(context, FirebaseAuth.getInstance().getCurrentUser().getUid(),
                         arrayList.get(holder.getAdapterPosition()).getProduct_id());
+                if (isSuccess)
+                    Toast.makeText(context, "Product Added to cart", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
 

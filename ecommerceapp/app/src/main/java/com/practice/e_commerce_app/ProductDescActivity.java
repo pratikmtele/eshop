@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -114,6 +116,16 @@ public class ProductDescActivity extends AppCompatActivity {
         });
 
         isProductAddedToCart(FirebaseAuth.getInstance().getCurrentUser().getUid(), product_id);
+
+        binding.buyNowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Boolean isSuccess = new AddToCartProduct().addToCartProduct(ProductDescActivity.this, FirebaseAuth.getInstance()
+                        .getCurrentUser().getUid(), product_id);
+                if (isSuccess)
+                    startActivity(new Intent(ProductDescActivity.this, PlaceOrderActivity.class));
+            }
+        });
     }
 
     private void isProductAddedToCart(String user_id, String productId) {
