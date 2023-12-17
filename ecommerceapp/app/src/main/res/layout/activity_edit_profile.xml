@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".EditProfileActivity">
 
     <ScrollView
@@ -101,21 +102,6 @@
                 app:layout_constraintTop_toTopOf="@+id/upt_name"
                 app:tint="@color/gray" />
 
-            <TextView
-                android:id="@+id/submit_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:gravity="center"
-                android:letterSpacing="0.04"
-                android:text="@string/submit"
-                android:textColor="@color/green"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/upt_name" />
-
             <EditText
                 android:id="@+id/upt_email"
                 android:layout_width="match_parent"
@@ -124,6 +110,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/edt_border"
+                android:enabled="false"
                 android:fontFamily="@font/poppins"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
@@ -132,7 +119,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/submit_btn"
+                app:layout_constraintTop_toBottomOf="@+id/upt_name"
                 tools:ignore="VisualLintTextFieldSize" />
 
             <ImageView
@@ -147,7 +134,7 @@
                 app:tint="@color/gray" />
 
             <EditText
-                android:id="@+id/upt_password"
+                android:id="@+id/upt_phone"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"
@@ -171,25 +158,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/baseline_phone"
-                app:layout_constraintBottom_toBottomOf="@+id/upt_password"
-                app:layout_constraintStart_toStartOf="@+id/upt_password"
-                app:layout_constraintTop_toTopOf="@+id/upt_password"
+                app:layout_constraintBottom_toBottomOf="@+id/upt_phone"
+                app:layout_constraintStart_toStartOf="@+id/upt_phone"
+                app:layout_constraintTop_toTopOf="@+id/upt_phone"
                 app:tint="@color/gray" />
 
-            <TextView
-                android:id="@+id/verify_btn"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/save"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/button_bg"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
                 android:letterSpacing="0.04"
-                android:text="Verify"
-                android:textColor="@color/green"
-                android:textSize="18sp"
+                android:text="@string/update"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/upt_password" />
+                app:layout_constraintTop_toBottomOf="@id/upt_phone"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

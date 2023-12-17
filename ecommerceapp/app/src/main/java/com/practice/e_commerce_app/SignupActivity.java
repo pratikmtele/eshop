@@ -59,8 +59,7 @@ public class SignupActivity extends AppCompatActivity {
                 UserModel user = new UserModel(
                         binding.signupName.getText().toString(),
                         binding.signupEmail.getText().toString(),
-                        binding.signupPhone.getText().toString(),
-                        0);
+                        binding.signupPhone.getText().toString());
 
                 database.getReference().child("Users").child(task.getResult().getUser().getUid()).setValue(user);
                 binding.signupProgressBar.setVisibility(View.GONE);

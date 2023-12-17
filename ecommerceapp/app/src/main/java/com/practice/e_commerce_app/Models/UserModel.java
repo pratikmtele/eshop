@@ -1,22 +1,24 @@
 package com.practice.e_commerce_app.Models;
 
-public class UserModel {
-    String name, email, phone, address;
-    int profilePic, usertype;
+import com.google.firebase.firestore.auth.User;
 
-    public UserModel(String name, String email, String phone, int usertype) {
+public class UserModel {
+    String name, email, phone, address, profilePic;
+    public UserModel(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.usertype = usertype;
     }
 
-    public int getUsertype() {
-        return usertype;
+    public UserModel(String name, String email, String phone, String address, String profilePic) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.profilePic = profilePic;
     }
 
-    public void setUsertype(int usertype) {
-        this.usertype = usertype;
+    public UserModel(){
     }
 
     public String getName() {
@@ -51,11 +53,11 @@ public class UserModel {
         this.address = address;
     }
 
-    public int getProfilePic() {
+    public String getProfilePic() {
         return profilePic;
     }
 
-    public void setProfilePic(int profilePic) {
+    public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
 }
