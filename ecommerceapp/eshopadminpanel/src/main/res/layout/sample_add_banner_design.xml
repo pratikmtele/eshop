@@ -22,8 +22,7 @@
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/banner1" />
+                android:scaleType="fitXY" />
 
         </LinearLayout>
 
