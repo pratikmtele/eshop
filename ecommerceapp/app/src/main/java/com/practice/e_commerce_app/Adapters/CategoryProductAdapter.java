@@ -21,7 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.practice.e_commerce_app.Helper.AddToCartProduct;
+import com.practice.e_commerce_app.Helper.ProductHelper;
 import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.ProductDescActivity;
 import com.practice.e_commerce_app.R;
@@ -62,7 +62,7 @@ public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProduct
         holder.product_add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddToCartProduct().addToCartProduct(context, FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                new ProductHelper().addToCartProduct(context, FirebaseAuth.getInstance().getCurrentUser().getUid(),
                         list.get(holder.getAdapterPosition()).getProduct_id());
             }
         });

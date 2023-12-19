@@ -2,6 +2,7 @@ package com.practice.e_commerce_app.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,8 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
         this.list = list;
         this.context = context;
     }
+
+    public CartProductAdapter(){}
 
     @NonNull
     @Override
@@ -99,20 +102,17 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        ImageView product_image, add_quantity, minus_quantity, remove_product;
-        TextView product_name, price, quantity, out_of_stock;
+        ImageView product_image, remove_product;
+        TextView product_name, price, out_of_stock;
         ConstraintLayout cart_layout;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             product_image = itemView.findViewById(R.id.cart_product_image);
-            add_quantity = itemView.findViewById(R.id.add_quantity);
-            minus_quantity = itemView.findViewById(R.id.minus_quantity);
             remove_product = itemView.findViewById(R.id.remove_product);
 
             product_name = itemView.findViewById(R.id.cart_product_name);
             price = itemView.findViewById(R.id.cart_product_price);
-            quantity = itemView.findViewById(R.id.cart_product_quantity);
             cart_layout = itemView.findViewById(R.id.Cart_Layout);
             out_of_stock = itemView.findViewById(R.id.out_of_stock_msg);
         }

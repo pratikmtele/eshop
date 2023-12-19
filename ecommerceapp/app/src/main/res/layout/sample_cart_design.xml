@@ -30,7 +30,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:contentDescription="Product image"
-                android:src="@drawable/laptop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +66,7 @@
                 android:id="@+id/cart_product_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:maxLines="1"
                 android:text="₹200"
                 android:textSize="16sp"
@@ -75,39 +74,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/cart_product_name"
                 app:layout_constraintTop_toBottomOf="@id/cart_product_name" />
-
-            <ImageView
-                android:id="@+id/add_quantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_add"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/cart_product_price"
-                app:layout_constraintTop_toBottomOf="@id/cart_product_price" />
-
-            <TextView
-                android:id="@+id/cart_product_quantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:padding="4dp"
-                android:text="10"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/add_quantity"
-                app:layout_constraintEnd_toStartOf="@id/minus_quantity"
-                app:layout_constraintStart_toEndOf="@id/add_quantity"
-                app:layout_constraintTop_toTopOf="@id/add_quantity" />
-
-            <ImageView
-                android:id="@+id/minus_quantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="16dp"
-                android:src="@drawable/baseline_minimize"
-                app:layout_constraintBottom_toBottomOf="@id/cart_product_quantity"
-                app:layout_constraintStart_toEndOf="@id/cart_product_quantity"
-                app:layout_constraintTop_toTopOf="@id/cart_product_quantity" />
 
             <ImageView
                 android:id="@+id/remove_product"

@@ -11,16 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.practice.e_commerce_app.Helper.AddToCartProduct;
+import com.practice.e_commerce_app.Helper.ProductHelper;
 import com.practice.e_commerce_app.Models.AddressModel;
+import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.databinding.ActivityProductDescBinding;
 
 import java.util.ArrayList;
@@ -29,10 +28,11 @@ public class ProductDescActivity extends AppCompatActivity {
 
     ActivityProductDescBinding binding;
     DatabaseReference reference;
-    String product_id, product_title, product_price;
+    String product_id, product_title, product_price, stock;
     ArrayList<SlideModel> slideModel;
     String imageUrl;
     AddressModel addressModel;
+    ProductModel productModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class ProductDescActivity extends AppCompatActivity {
         slideModel = new ArrayList<>();
 
         addressModel = new AddressModel();
+        productModel = new ProductModel();
 
         Intent productIntent = getIntent();
         product_id = productIntent.getStringExtra("productId");
@@ -54,8 +55,10 @@ public class ProductDescActivity extends AppCompatActivity {
         reference.child("Products").child(product_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                product_title = dataSnapshot.child("product_name").getValue(String.class);
-                product_price = dataSnapshot.child("product_price").getValue(String.class);
+                  productModel = dataSnapshot.getValue(ProductModel.class);
+//                product_title = dataSnapshot.child("product_name").getValue(String.class);
+//                product_price = dataSnapshot.child("product_price").getValue(String.class);
+//                stock = dataSnapshot.child("stock").getValue(String.class);
                 for (int i = 0; i < 3; i++) {
                     imageUrl = dataSnapshot.child("productUrls").child(i + "").getValue(String.class);
                     if (imageUrl != null) {
@@ -63,10 +66,12 @@ public class ProductDescActivity extends AppCompatActivity {
                     }
                 }
 
-                binding.productTitle.setText(product_title);
-                binding.productPrice.setText("₹" + product_price);
+                binding.productTitle.setText(productModel.getProduct_title());
+                binding.productPrice.setText("₹" + productModel.getProduct_price());
                 binding.productImageSlider.setImageList(slideModel, ScaleTypes.CENTER_INSIDE);
 
+                if (Integer.parseInt(productModel.getStock()) <= 0)
+                    binding.buyNowBtn.setEnabled(false);
             }
 
             @Override
@@ -101,7 +106,7 @@ public class ProductDescActivity extends AppCompatActivity {
         binding.addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AddToCartProduct().addToCartProduct(getApplicationContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                new ProductHelper().addToCartProduct(getApplicationContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(),
                         product_id);
             }
         });
@@ -120,10 +125,11 @@ public class ProductDescActivity extends AppCompatActivity {
         binding.buyNowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Boolean isSuccess = new AddToCartProduct().addToCartProduct(ProductDescActivity.this, FirebaseAuth.getInstance()
+                Boolean isSuccess = new ProductHelper().addToCartProduct(ProductDescActivity.this, FirebaseAuth.getInstance()
                         .getCurrentUser().getUid(), product_id);
-                if (isSuccess)
-                    startActivity(new Intent(ProductDescActivity.this, PlaceOrderActivity.class));
+                if (isSuccess){
+                      startActivity(new Intent(ProductDescActivity.this, PlaceOrderActivity.class));
+                }
             }
         });
     }

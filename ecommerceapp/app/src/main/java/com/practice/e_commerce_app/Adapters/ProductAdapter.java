@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.practice.e_commerce_app.Helper.AddToCartProduct;
+import com.practice.e_commerce_app.Helper.ProductHelper;
 import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.ProductDescActivity;
 import com.practice.e_commerce_app.R;
@@ -65,7 +65,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.product_add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Boolean isSuccess = new AddToCartProduct().addToCartProduct(context, FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                Boolean isSuccess = new ProductHelper().addToCartProduct(context, FirebaseAuth.getInstance().getCurrentUser().getUid(),
                         arrayList.get(holder.getAdapterPosition()).getProduct_id());
                 if (isSuccess)
                     Toast.makeText(context, "Product Added to cart", Toast.LENGTH_SHORT).show();

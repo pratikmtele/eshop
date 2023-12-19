@@ -109,7 +109,6 @@ public class PlaceOrderActivity extends AppCompatActivity {
 
                 displayPriceDetails();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

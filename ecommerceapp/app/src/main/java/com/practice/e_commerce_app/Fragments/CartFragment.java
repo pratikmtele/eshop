@@ -2,6 +2,7 @@ package com.practice.e_commerce_app.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,10 +72,9 @@ public class CartFragment extends Fragment {
 
         place_order_btn.setOnClickListener(view1 -> {
             if (cartProductList.size() > 0){
-                Intent intent = new Intent(view1.getContext(), PlaceOrderActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(view1.getContext(), PlaceOrderActivity.class);
+                    startActivity(intent);
             }
-
         });
 
         return view;
@@ -86,6 +86,7 @@ public class CartFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Boolean isInStock = false;
                 ProductModel model = new ProductModel();
                 model.setProduct_id(snapshot.child("product_id").getValue(String.class));
                 model.setProduct_title(snapshot.child("product_name").getValue(String.class));
@@ -94,13 +95,16 @@ public class CartFragment extends Fragment {
                 model.setStock(snapshot.child("stock").getValue(String.class));
                 cartProductList.add(model);
 
-                cartProductAdapter.notifyDataSetChanged();
+                if (Integer.parseInt(model.getStock()) > 0 )
+                    isInStock = true;
+
+                place_order_btn.setEnabled(isInStock);
                 displayOrderDetails();
+                cartProductAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
@@ -116,6 +120,7 @@ public class CartFragment extends Fragment {
         item_price.setText("₹" + items_price);
         Double totalPrice = items_price + 40;
         total_price.setText("₹" + totalPrice);
+
     }
 
     private void getCartProductId() {
