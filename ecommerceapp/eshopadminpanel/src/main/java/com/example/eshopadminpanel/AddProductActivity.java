@@ -189,7 +189,7 @@ public class AddProductActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             if (data.getClipData() != null) {
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 3; i++) {
                     product_images.add(data.getClipData().getItemAt(i).getUri());
                 }
                 productImagesAdapter.notifyDataSetChanged();
