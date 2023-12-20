@@ -2,7 +2,6 @@ package com.practice.e_commerce_app.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,9 +70,9 @@ public class CartFragment extends Fragment {
         getCartProductId();
 
         place_order_btn.setOnClickListener(view1 -> {
-            if (cartProductList.size() > 0){
-                    Intent intent = new Intent(view1.getContext(), PlaceOrderActivity.class);
-                    startActivity(intent);
+            if (cartProductList.size() > 0) {
+                Intent intent = new Intent(view1.getContext(), PlaceOrderActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -95,7 +94,7 @@ public class CartFragment extends Fragment {
                 model.setStock(snapshot.child("stock").getValue(String.class));
                 cartProductList.add(model);
 
-                if (Integer.parseInt(model.getStock()) > 0 )
+                if (Integer.parseInt(model.getStock()) > 0)
                     isInStock = true;
 
                 place_order_btn.setEnabled(isInStock);

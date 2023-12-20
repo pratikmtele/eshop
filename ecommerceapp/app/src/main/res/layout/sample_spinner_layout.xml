@@ -3,10 +3,10 @@
     android:id="@+id/spinner_textview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:ellipsize="end"
     android:maxLines="1"
     android:padding="13dp"
-    android:background="@color/white"
-    android:textSize="16sp" >
+    android:textSize="16sp">
 
 </TextView>

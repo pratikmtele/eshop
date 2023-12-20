@@ -13,7 +13,7 @@ public class AddressModel {
         this.state = state;
     }
 
-    public AddressModel(){
+    public AddressModel() {
     }
 
     public String getFullName() {

@@ -23,7 +23,7 @@ import com.practice.e_commerce_app.databinding.ActivityAddressBinding;
 
 public class AddressActivity extends AppCompatActivity {
     ActivityAddressBinding binding;
-    String []indian_states = {"Select State", "Andhra Pradesh",
+    String[] indian_states = {"Select State", "Andhra Pradesh",
             "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
             "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha",
             "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
@@ -32,6 +32,7 @@ public class AddressActivity extends AppCompatActivity {
     AddressModel addressModel;
     DatabaseReference reference;
     ArrayAdapter<String> arrayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class AddressActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Boolean isValid = edtValidation();
-                if (isValid){
+                if (isValid) {
                     addressModel.setFullName(binding.edtFullName.getText().toString());
                     addressModel.setPhoneNumber(binding.edtPhoneNumber.getText().toString());
                     addressModel.setBuildingName(binding.edtBuildingName.getText().toString());
@@ -72,10 +73,11 @@ public class AddressActivity extends AppCompatActivity {
         binding.edtState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if (position != 0){
+                if (position != 0) {
                     addressModel.setState(adapterView.getItemAtPosition(position).toString());
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
@@ -85,7 +87,7 @@ public class AddressActivity extends AppCompatActivity {
         reference.child("Addresses").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                if (snapshot.hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                     displayAddress();
                 }
             }
@@ -123,27 +125,27 @@ public class AddressActivity extends AppCompatActivity {
     private void saveAddress(AddressModel addressModel) {
         reference.child("Addresses").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .setValue(addressModel).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(AddressActivity.this, "Address Saved", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AddressActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(AddressActivity.this, "Address Saved", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddressActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
-    public Boolean edtValidation(){
+    public Boolean edtValidation() {
 
         if (binding.edtFullName.getText().toString().equals(addressModel.getFullName()) &&
-            binding.edtPhoneNumber.getText().toString().equals(addressModel.getPhoneNumber()) &&
-            binding.edtBuildingName.getText().toString().equals(addressModel.getBuildingName()) &&
-            binding.edtRoadName.getText().toString().equals(addressModel.getArea()) &&
-            binding.edtState.getSelectedItemPosition() == arrayAdapter.getPosition(addressModel.getState()) &&
-            binding.edtCity.getText().toString().equals(addressModel.getCity()) &&
-            binding.edtPincode.getText().toString().equals(addressModel.getPincode())){
+                binding.edtPhoneNumber.getText().toString().equals(addressModel.getPhoneNumber()) &&
+                binding.edtBuildingName.getText().toString().equals(addressModel.getBuildingName()) &&
+                binding.edtRoadName.getText().toString().equals(addressModel.getArea()) &&
+                binding.edtState.getSelectedItemPosition() == arrayAdapter.getPosition(addressModel.getState()) &&
+                binding.edtCity.getText().toString().equals(addressModel.getCity()) &&
+                binding.edtPincode.getText().toString().equals(addressModel.getPincode())) {
             return false;
         }
 
@@ -155,7 +157,7 @@ public class AddressActivity extends AppCompatActivity {
         if (binding.edtPhoneNumber.length() == 0) {
             Toast.makeText(AddressActivity.this, "Phone number is required", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (binding.edtPhoneNumber.length() != 10){
+        } else if (binding.edtPhoneNumber.length() != 10) {
             Toast.makeText(this, "Invalid phone number", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -170,20 +172,20 @@ public class AddressActivity extends AppCompatActivity {
             return false;
         }
 
-        if (binding.edtState.getSelectedItemPosition() == 0){
+        if (binding.edtState.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Select state", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (binding.edtCity.length() == 0){
+        if (binding.edtCity.length() == 0) {
             Toast.makeText(this, "City is required", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (binding.edtPincode.length() == 0){
+        if (binding.edtPincode.length() == 0) {
             Toast.makeText(this, "Pincode is required", Toast.LENGTH_SHORT).show();
             return false;
-        }else if (binding.edtPincode.length() != 6){
+        } else if (binding.edtPincode.length() != 6) {
             Toast.makeText(this, "Invalid Pincode", Toast.LENGTH_SHORT).show();
             return false;
         }

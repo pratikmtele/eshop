@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ProductHelper {
     DatabaseReference reference;
     Boolean isSuccess = true;
+
     public Boolean addToCartProduct(Context context, String user_id, String product_id) {
 
         reference = FirebaseDatabase.getInstance().getReference().child("CartProducts");
@@ -24,7 +25,7 @@ public class ProductHelper {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-               isSuccess = false;
+                isSuccess = false;
             }
         });
         return isSuccess;

@@ -55,7 +55,7 @@ public class ProductDescActivity extends AppCompatActivity {
         reference.child("Products").child(product_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                  productModel = dataSnapshot.getValue(ProductModel.class);
+                productModel = dataSnapshot.getValue(ProductModel.class);
 //                product_title = dataSnapshot.child("product_name").getValue(String.class);
 //                product_price = dataSnapshot.child("product_price").getValue(String.class);
 //                stock = dataSnapshot.child("stock").getValue(String.class);
@@ -86,8 +86,8 @@ public class ProductDescActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 addressModel = snapshot.getValue(AddressModel.class);
-                String address = addressModel.getBuildingName()+", "+addressModel.getArea()+", "+addressModel.getCity()+
-                        ", "+addressModel.getState()+"-"+addressModel.getPincode();
+                String address = addressModel.getBuildingName() + ", " + addressModel.getArea() + ", " + addressModel.getCity() +
+                        ", " + addressModel.getState() + "-" + addressModel.getPincode();
                 binding.userAddress.setText(address);
             }
 
@@ -127,8 +127,8 @@ public class ProductDescActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Boolean isSuccess = new ProductHelper().addToCartProduct(ProductDescActivity.this, FirebaseAuth.getInstance()
                         .getCurrentUser().getUid(), product_id);
-                if (isSuccess){
-                      startActivity(new Intent(ProductDescActivity.this, PlaceOrderActivity.class));
+                if (isSuccess) {
+                    startActivity(new Intent(ProductDescActivity.this, PlaceOrderActivity.class));
                 }
             }
         });

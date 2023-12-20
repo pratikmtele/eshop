@@ -2,7 +2,6 @@ package com.practice.e_commerce_app.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,8 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
         this.context = context;
     }
 
-    public CartProductAdapter(){}
+    public CartProductAdapter() {
+    }
 
     @NonNull
     @Override

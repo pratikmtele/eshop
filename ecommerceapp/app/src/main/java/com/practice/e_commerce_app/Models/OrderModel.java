@@ -1,18 +1,32 @@
 package com.practice.e_commerce_app.Models;
 
-public class OrderModel {
-    String order_id, product_id, payment_mode, total_price, data, time;
+import java.util.ArrayList;
 
-    public OrderModel(String order_id, String product_id, String payment_mode, String total_price, String data, String time) {
+public class OrderModel {
+    String order_id, product_id, payment_mode, total_price, date, time, address_id;
+    ArrayList<ProductModel> product_ids;
+
+    public OrderModel(String order_id, String product_id, String payment_mode, String total_price, String date, String time, String address_id) {
         this.order_id = order_id;
         this.product_id = product_id;
         this.payment_mode = payment_mode;
         this.total_price = total_price;
-        this.data = data;
+        this.date = date;
         this.time = time;
+        this.address_id = address_id;
     }
 
-    public OrderModel(){
+    public OrderModel(String order_id, String payment_mode, String total_price, String date, String time, String address_id, ArrayList<ProductModel> product_ids) {
+        this.order_id = order_id;
+        this.payment_mode = payment_mode;
+        this.total_price = total_price;
+        this.date = date;
+        this.time = time;
+        this.address_id = address_id;
+        this.product_ids = product_ids;
+    }
+
+    public OrderModel() {
     }
 
     public String getOrder_id() {
@@ -47,12 +61,12 @@ public class OrderModel {
         this.total_price = total_price;
     }
 
-    public String getData() {
-        return data;
+    public String getDate() {
+        return date;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTime() {
@@ -61,5 +75,21 @@ public class OrderModel {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public ArrayList<ProductModel> getProduct_ids() {
+        return product_ids;
+    }
+
+    public void setProduct_ids(ArrayList<ProductModel> product_ids) {
+        this.product_ids = product_ids;
+    }
+
+    public String getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(String address_id) {
+        this.address_id = address_id;
     }
 }

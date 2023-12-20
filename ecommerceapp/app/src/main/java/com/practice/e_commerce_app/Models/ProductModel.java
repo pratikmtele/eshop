@@ -6,7 +6,6 @@ public class ProductModel {
     private String product_image, product_id;
     private String product_title, product_price, stock;
     private ArrayList<String> imageUrls;
-    int product_quantity;
 
     public ProductModel(String image, String title, String price) {
         this.product_image = image;
@@ -27,10 +26,6 @@ public class ProductModel {
         this.product_title = product_title;
         this.product_price = product_price;
         this.imageUrls = imageUrls;
-    }
-
-    public ProductModel(int product_quantity) {
-        this.product_quantity = product_quantity;
     }
 
     public ProductModel() {
@@ -84,11 +79,4 @@ public class ProductModel {
         this.stock = stock;
     }
 
-    public int getProduct_quantity() {
-        return product_quantity;
-    }
-
-    public void setProduct_quantity(int product_quantity) {
-        this.product_quantity = product_quantity;
-    }
 }
