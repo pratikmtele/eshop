@@ -55,6 +55,11 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
 
         reference = FirebaseDatabase.getInstance().getReference();
 
+        if (list.get(holder.getAdapterPosition()).getStock().equals("0"))
+            holder.out_of_stock.setText("Out of stock");
+        else
+            holder.out_of_stock.setText("");
+
         holder.cart_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,11 +74,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
                 removeCartProduct(list.get(holder.getAdapterPosition()).getProduct_id());
             }
         });
-
-        if (list.get(holder.getAdapterPosition()).getStock() == "0" || list.get(holder.getAdapterPosition()).getStock() == null)
-            holder.out_of_stock.setText("Out of stock");
-        else
-            holder.out_of_stock.setText("");
     }
 
     private void removeCartProduct(String productId) {

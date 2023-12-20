@@ -2,6 +2,7 @@ package com.practice.e_commerce_app;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ public class ProductDescActivity extends AppCompatActivity {
 
     ActivityProductDescBinding binding;
     DatabaseReference reference;
-    String product_id, product_title, product_price, stock;
+    String product_id;
     ArrayList<SlideModel> slideModel;
     String imageUrl;
     AddressModel addressModel;
@@ -53,12 +54,10 @@ public class ProductDescActivity extends AppCompatActivity {
 
         // fetching data from the database
         reference.child("Products").child(product_id).addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 productModel = dataSnapshot.getValue(ProductModel.class);
-//                product_title = dataSnapshot.child("product_name").getValue(String.class);
-//                product_price = dataSnapshot.child("product_price").getValue(String.class);
-//                stock = dataSnapshot.child("stock").getValue(String.class);
                 for (int i = 0; i < 3; i++) {
                     imageUrl = dataSnapshot.child("productUrls").child(i + "").getValue(String.class);
                     if (imageUrl != null) {
@@ -67,7 +66,13 @@ public class ProductDescActivity extends AppCompatActivity {
                 }
 
                 binding.productTitle.setText(productModel.getProduct_title());
-                binding.productPrice.setText("₹" + productModel.getProduct_price());
+                if (!productModel.getStock().equals("0"))
+                    binding.productPrice.setText("₹" + productModel.getProduct_price());
+                else{
+                    binding.productPrice.setTextColor(getResources().getColor(R.color.red));
+                    binding.productPrice.setText("Out of Stock");
+                }
+
                 binding.productImageSlider.setImageList(slideModel, ScaleTypes.CENTER_INSIDE);
 
                 if (Integer.parseInt(productModel.getStock()) <= 0)

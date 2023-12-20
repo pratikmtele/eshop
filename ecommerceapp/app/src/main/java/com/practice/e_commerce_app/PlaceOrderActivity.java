@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,8 @@ public class PlaceOrderActivity extends AppCompatActivity {
         addressModel = new AddressModel();
         product_ids = new ArrayList<>();
 
+        binding.cashOnDeliveryOption.setChecked(true);
+
         // setting up progress dialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Placing Order");
@@ -94,7 +97,8 @@ public class PlaceOrderActivity extends AppCompatActivity {
                 orderModel.setTime(time);
                 orderModel.setTotal_price(totalPrice+"");
                 orderModel.setAddress_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                orderModel.setPayment_mode(binding.cashOnDeliveryOption.getText().toString());
+                RadioButton checkedButton = findViewById(binding.radioGroup.getCheckedRadioButtonId());
+                orderModel.setPayment_mode(checkedButton.getText().toString());
                 String key = orderDetailsReference.child("OrderDetails").child(FirebaseAuth.getInstance()
                         .getCurrentUser().getUid()).push().getKey();
                 orderModel.setOrder_id(key);
