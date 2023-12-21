@@ -23,12 +23,13 @@ import com.practice.e_commerce_app.EditProfileActivity;
 import com.practice.e_commerce_app.LoginActivity;
 import com.practice.e_commerce_app.Models.UserModel;
 import com.practice.e_commerce_app.NotificationActivity;
+import com.practice.e_commerce_app.OrdersActivity;
 import com.practice.e_commerce_app.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
-    LinearLayout sign_out, edit_profile, notifications, addAddress;
+    LinearLayout sign_out, edit_profile, notifications, addAddress, myOrders;
     FirebaseAuth auth;
     FirebaseDatabase database;
     DatabaseReference ref;
@@ -54,6 +55,7 @@ public class ProfileFragment extends Fragment {
         user_name = view.findViewById(R.id.user_name);
         profile_image = view.findViewById(R.id.profile_image);
         addAddress = view.findViewById(R.id.shopping_address_layout);
+        myOrders = view.findViewById(R.id.my_orders_layout);
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -96,6 +98,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), AddressActivity.class));
+            }
+        });
+
+        myOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), OrdersActivity.class));
             }
         });
 

@@ -4,14 +4,9 @@ import java.util.ArrayList;
 
 public class ProductModel {
     private String product_image, product_id;
-    private String product_title, product_price, stock;
+    private String product_title, product_price, stock, total_price;
     private ArrayList<String> imageUrls;
-
-    public ProductModel(String image, String title, String price) {
-        this.product_image = image;
-        this.product_title = title;
-        this.product_price = price;
-    }
+    ArrayList<ProductModel> product_ids;
 
     public ProductModel(String product_id, String product_title, String product_price, String product_image, String stock) {
         this.product_id = product_id;
@@ -21,14 +16,15 @@ public class ProductModel {
         this.stock = stock;
     }
 
-    public ProductModel(String product_id, String product_title, String product_price, ArrayList<String> imageUrls) {
-        this.product_id = product_id;
-        this.product_title = product_title;
-        this.product_price = product_price;
-        this.imageUrls = imageUrls;
+    public ProductModel() {
     }
 
-    public ProductModel() {
+    public String getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(String total_price) {
+        this.total_price = total_price;
     }
 
     public String getProduct_id() {
@@ -79,4 +75,11 @@ public class ProductModel {
         this.stock = stock;
     }
 
+    public ArrayList<ProductModel> getProduct_ids() {
+        return product_ids;
+    }
+
+    public void setProduct_ids(ArrayList<ProductModel> product_ids) {
+        this.product_ids = product_ids;
+    }
 }
