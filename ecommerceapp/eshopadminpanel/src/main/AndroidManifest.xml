@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ecommerceapp">
         <activity
+            android:name=".OrdersActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddProductActivity"
             android:exported="false" />
         <activity

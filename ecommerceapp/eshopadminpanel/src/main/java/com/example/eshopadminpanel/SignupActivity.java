@@ -39,7 +39,7 @@ public class SignupActivity extends AppCompatActivity {
                     binding.signupPassword.getText().toString().equals("")) {
 
                 Toast.makeText(SignupActivity.this, "Fill all required fields.", Toast.LENGTH_SHORT).show();
-            } else {
+            } else if (validatePhoneNumber()){
                 binding.signupProgressBar.setVisibility(View.VISIBLE);
                 binding.signUpBtn.setVisibility(View.INVISIBLE);
                 createAccount();
@@ -53,29 +53,40 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void createAccount() {
-        auth.createUserWithEmailAndPassword(binding.signupEmail.getText().toString(), binding.signupPassword.getText()
-                .toString()).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                AdminModel user = new AdminModel(
-                        binding.signupName.getText().toString(),
-                        binding.signupEmail.getText().toString(),
-                        binding.signupPhone.getText().toString(),
-                        1);
+            auth.createUserWithEmailAndPassword(binding.signupEmail.getText().toString(), binding.signupPassword.getText()
+                    .toString()).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    AdminModel user = new AdminModel(
+                            binding.signupName.getText().toString(),
+                            binding.signupEmail.getText().toString(),
+                            binding.signupPhone.getText().toString(),
+                            1);
 
-                database.getReference().child("Admin").child(task.getResult().getUser().getUid()).setValue(user);
-                binding.signupProgressBar.setVisibility(View.GONE);
-                binding.signUpBtn.setVisibility(View.VISIBLE);
-                Toast.makeText(SignupActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                binding.signupName.setText("");
-                binding.signupEmail.setText("");
-                binding.signupPassword.setText("");
-                binding.signupPhone.setText("");
-                auth.signOut();
-            } else {
-                binding.signupProgressBar.setVisibility(View.GONE);
-                binding.signUpBtn.setVisibility(View.VISIBLE);
-                Toast.makeText(SignupActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    database.getReference().child("Admin").child(task.getResult().getUser().getUid()).setValue(user);
+                    binding.signupProgressBar.setVisibility(View.GONE);
+                    binding.signUpBtn.setVisibility(View.VISIBLE);
+                    Toast.makeText(SignupActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
+                    binding.signupName.setText("");
+                    binding.signupEmail.setText("");
+                    binding.signupPassword.setText("");
+                    binding.signupPhone.setText("");
+                    auth.signOut();
+                } else {
+                    binding.signupProgressBar.setVisibility(View.GONE);
+                    binding.signUpBtn.setVisibility(View.VISIBLE);
+                    Toast.makeText(SignupActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+    }
+
+    private Boolean validatePhoneNumber() {
+        if (binding.signupPhone.length() == 0){
+            Toast.makeText(this, "Phone number is required", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (binding.signupPhone.length() != 10){
+            Toast.makeText(this, "Invalid Phone Number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

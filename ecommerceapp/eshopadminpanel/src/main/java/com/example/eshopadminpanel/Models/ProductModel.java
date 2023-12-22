@@ -3,7 +3,7 @@ package com.example.eshopadminpanel.Models;
 import java.util.ArrayList;
 
 public class ProductModel {
-    String product_name, product_id, category_id;
+    String product_name, product_id, category_id, product_image;
     ArrayList<String> productUrls;
     String product_price, stock;
 
@@ -73,5 +73,13 @@ public class ProductModel {
 
     public void setStock(String stock) {
         this.stock = stock;
+    }
+
+    public String getProduct_image() {
+        return product_image;
+    }
+
+    public void setProduct_image(String product_image) {
+        this.product_image = product_image;
     }
 }
