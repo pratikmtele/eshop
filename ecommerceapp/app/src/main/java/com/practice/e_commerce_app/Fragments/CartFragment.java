@@ -71,8 +71,23 @@ public class CartFragment extends Fragment {
 
         place_order_btn.setOnClickListener(view1 -> {
             if (cartProductList.size() > 0) {
-                Intent intent = new Intent(view1.getContext(), PlaceOrderActivity.class);
-                startActivity(intent);
+                FirebaseDatabase.getInstance().getReference().child("Addresses").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                            Intent intent = new Intent(view1.getContext(), PlaceOrderActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(view.getContext(), "Please save your shipping address first.", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 

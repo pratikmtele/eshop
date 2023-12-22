@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,13 +23,8 @@ import com.practice.e_commerce_app.Models.OrderModel;
 import com.practice.e_commerce_app.Models.ProductModel;
 import com.practice.e_commerce_app.databinding.ActivityPlaceOrderBinding;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class PlaceOrderActivity extends AppCompatActivity {
     ActivityPlaceOrderBinding binding;
