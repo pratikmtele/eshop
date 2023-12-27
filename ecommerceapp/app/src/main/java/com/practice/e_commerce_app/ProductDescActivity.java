@@ -58,6 +58,7 @@ public class ProductDescActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 productModel = dataSnapshot.getValue(ProductModel.class);
+                String product_title = dataSnapshot.child("product_name").getValue(String.class);
                 for (int i = 0; i < 3; i++) {
                     imageUrl = dataSnapshot.child("productUrls").child(i + "").getValue(String.class);
                     if (imageUrl != null) {
@@ -65,7 +66,8 @@ public class ProductDescActivity extends AppCompatActivity {
                     }
                 }
 
-                binding.productTitle.setText(productModel.getProduct_title());
+                binding.productTitle.setText(product_title);
+
                 if (!productModel.getStock().equals("0"))
                     binding.productPrice.setText("₹" + productModel.getProduct_price());
                 else{
@@ -141,13 +143,12 @@ public class ProductDescActivity extends AppCompatActivity {
 
     private void isProductAddedToCart(String user_id, String productId) {
         reference.child("CartProducts").child(user_id).child(productId).addValueEventListener(new ValueEventListener() {
-            @SuppressLint("ResourceAsColor")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Boolean isAdded = snapshot.exists();
                 if (isAdded) {
                     binding.addToCartBtn.setText("Added To Cart");
-                    binding.addToCartBtn.setTextColor(R.color.black);
+                    binding.addToCartBtn.setTextColor(getResources().getColor(R.color.black));
                     binding.addToCartBtn.setEnabled(false);
                 }
             }

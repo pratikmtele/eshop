@@ -32,14 +32,14 @@ public class NotificationActivity extends AppCompatActivity {
 
         // Notifications Recyclerview
         ArrayList<NotificationModel> notificationList = new ArrayList<>();
-        notificationList.add(new NotificationModel("Order Received!", "Your product containing Men's Travel Shirt is Received.", "1 sec ago"));
-        notificationList.add(new NotificationModel("Order Shipment is Ready!", "Your product containing IdeaPad Gaming 3 is ready deliver.", "1 sec ago"));
-        notificationList.add(new NotificationModel("Out for Delivery!", "Your product containing Men's Travel Shirt is out for delivery", "1 sec ago"));
-        notificationList.add(new NotificationModel("Order Delivered!", "Your product containing Men's Travel Shirt has been delivered.", "1 sec ago"));
-        notificationList.add(new NotificationModel("Order Received!", "Your product containing Men's Travel Shirt is Received.", "1 sec ago"));
-        notificationList.add(new NotificationModel("Order Received!", "Your product containing Men's Travel Shirt is Received.", "1 sec ago"));
-        notificationList.add(new NotificationModel("Order Shipment is Ready!", "Your product containing IdeaPad Gaming 3 is ready deliver.", "1 sec ago"));
-        notificationList.add(new NotificationModel("Out for Delivery!", "Your product containing Men's Travel Shirt is out for delivery", "1 sec ago"));
+//        notificationList.add(new NotificationModel("Order Received!", "Your product containing Men's Travel Shirt is Received.", "1 sec ago"));
+//        notificationList.add(new NotificationModel("Order Shipment is Ready!", "Your product containing IdeaPad Gaming 3 is ready deliver.", "1 sec ago"));
+//        notificationList.add(new NotificationModel("Out for Delivery!", "Your product containing Men's Travel Shirt is out for delivery", "1 sec ago"));
+//        notificationList.add(new NotificationModel("Order Delivered!", "Your product containing Men's Travel Shirt has been delivered.", "1 sec ago"));
+//        notificationList.add(new NotificationModel("Order Received!", "Your product containing Men's Travel Shirt is Received.", "1 sec ago"));
+//        notificationList.add(new NotificationModel("Order Received!", "Your product containing Men's Travel Shirt is Received.", "1 sec ago"));
+//        notificationList.add(new NotificationModel("Order Shipment is Ready!", "Your product containing IdeaPad Gaming 3 is ready deliver.", "1 sec ago"));
+//        notificationList.add(new NotificationModel("Out for Delivery!", "Your product containing Men's Travel Shirt is out for delivery", "1 sec ago"));
 
         if (notificationList.size() > 0) {
             NotificationAdapter notificationAdapter = new NotificationAdapter(notificationList, this);
